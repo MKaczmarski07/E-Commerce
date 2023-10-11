@@ -1,15 +1,23 @@
-<div class="m-6">
+<div class="my-6">
   <app-slider></app-slider>
 
-  <div>
-    <span>Popular this week</span>
-  </div>
+  <div class="flex flex-col gap-10 my-10">
+    <div class="home-section">
+      <span class="home-section-header">Popular this week</span>
+      <div class="home-section-grid">
+        <app-product-view></app-product-view>
+        <app-product-view></app-product-view>
+        <app-product-view></app-product-view>
+        <app-product-view></app-product-view>
+      </div>
+    </div>
 
-  <div>
-    <span>sale</span>
-  </div>
+    <div class="home-section">
+      <span class="home-section-header">Sale</span>
+    </div>
 
-  <div>
-    <span>Bestsellers</span>
+    <div class="home-section">
+      <span class="home-section-header">Bestsellers</span>
+    </div>
   </div>
 </div>

@@ -1,5 +1,26 @@
-.slide {
-  background-color: bisque;
-  border-radius: 20px;
-  z-index: 1;
+.home-section {
+  padding: 1rem 0;
+  position: relative;
+
+  ::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #d1d1d1;
+  }
+}
+
+.home-section-header {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.home-section-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
 }
