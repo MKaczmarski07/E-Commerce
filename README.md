@@ -1,27 +1,36 @@
-# Shop
+# E-Commerce platform
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.4.
+## Official Website 🌐
 
-## Development server
+## Technology Stack
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+[Angular 🔗](https://angular.io)<br>
+[TypeScript 🔗](https://typescriptlang.org)<br>
+[Sass 🔗](https://sass-lang.com)<br>
 
-## Code scaffolding
+## Installation Guide ⚙️
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Here's a step-by-step guide to help you get started with the project.
 
-## Build
+### Prerequisites
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Before you begin, make sure you have the following installed on your machine:
 
-## Running unit tests
+- Node.js (version 14.0 or later)
+- npm package manager (version 6.0 or later)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Installation
 
-## Running end-to-end tests
+Let's start with installing all dependencies. Move to the app main workspace and run:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+    npm i
 
-## Further help
+To create a localhost port you should type:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+    ng serve
+
+Your application is ready at port 4200.
+
+    http://localhost:4200/
+
+## License and Copyrights 📜

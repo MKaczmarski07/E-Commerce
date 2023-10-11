@@ -1,0 +1,31 @@
+<div class="navigation-wrapper w-[80%] mx-auto">
+  <div class="keen-slider keen-slider--vertical rounded-[20px]" #sliderRef>
+    <div class="keen-slider__slide number-slide1">1</div>
+    <div class="keen-slider__slide number-slide2">2</div>
+    <div class="keen-slider__slide number-slide3">3</div>
+    <div class="keen-slider__slide number-slide4">4</div>
+  </div>
+  <button class="arrow arrow--left" (click)="slider!.prev()">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path
+        d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"
+      />
+    </svg>
+  </button>
+
+  <button class="arrow arrow--right" (click)="slider!.next()">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
+    </svg>
+  </button>
+</div>
+<div class="slider-headers">
+  <button
+    (click)="slider!.moveToIdx(i)"
+    class="slider-header-button"
+    *ngFor="let text of sliderHeaders; let i = index"
+    [class]="i === currentSlide ? 'button-active' : ''"
+  >
+    {{ text }}
+  </button>
+</div>
