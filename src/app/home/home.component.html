@@ -5,10 +5,12 @@
     <div class="home-section">
       <span class="home-section-header">Popular this week</span>
       <div class="home-section-grid">
-        <app-product-view></app-product-view>
-        <app-product-view></app-product-view>
-        <app-product-view></app-product-view>
-        <app-product-view></app-product-view>
+        <app-product-view
+          *ngFor="let item of shoes | async"
+          [name]="item.name"
+          [price]="item.price"
+          [gender]="item.gender"
+        ></app-product-view>
       </div>
     </div>
 
