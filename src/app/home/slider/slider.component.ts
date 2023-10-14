@@ -22,6 +22,11 @@ export class SliderComponent {
   dotHelper: number[] = [];
   slider: KeenSliderInstance | undefined;
 
+  constructor() {
+    // prevent sliderHeaders from being longer than 5 elements
+    this.sliderHeaders = this.sliderHeaders.slice(0, 5);
+  }
+
   ngAfterViewInit() {
     this.slider = new KeenSlider(
       this.sliderRef.nativeElement,

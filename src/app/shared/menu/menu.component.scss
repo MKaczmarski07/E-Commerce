@@ -1,0 +1,45 @@
+.nav-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 500;
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+.nav-li {
+  cursor: pointer;
+  padding: 1rem 0;
+
+  @media (min-width: 1024px) {
+    padding: 1rem 1.5rem;
+    &-active {
+      background-color: white;
+    }
+  }
+}
+
+.sub-menu {
+  width: 100%;
+  padding: 1rem 3rem;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+  height: 100vh;
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    margin-top: 0;
+    height: auto;
+  }
+}
+
+.hamburger {
+  &:hover {
+    background-color: #989898;
+  }
+}

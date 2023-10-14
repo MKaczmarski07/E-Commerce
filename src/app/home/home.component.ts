@@ -1,13 +1,7 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { Firestore, collectionData } from '@angular/fire/firestore';
-import { collection } from 'firebase/firestore';
+import { Component, OnInit } from '@angular/core';
+import { FirebaseService } from '../services/firebase.service';
 import { Observable } from 'rxjs';
-
-interface Item {
-  gender: string;
-  name: string;
-  price: number;
-}
+import { Item } from '../shared/item';
 
 @Component({
   selector: 'app-home',
@@ -15,15 +9,11 @@ interface Item {
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  private firestore: Firestore = inject(Firestore);
   shoes: Observable<Item[]> | undefined;
 
-  getCollections() {
-    const shoesCollection = collection(this.firestore, 'shoes') as any;
-    this.shoes = collectionData<Item>(shoesCollection);
-  }
+  constructor(private firebaseService: FirebaseService) {}
 
   ngOnInit() {
-    this.getCollections();
+    this.shoes = this.firebaseService.getCollection('shoes');
   }
 }
