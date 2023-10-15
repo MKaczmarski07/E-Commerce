@@ -1,0 +1,15 @@
+<div class="my-6 flex flex-col gap-6">
+  <h1 class="text-2xl font-medium">{{ productType }}</h1>
+
+  <div class="flex gap-6">
+    <div class="filters"></div>
+    <div class="grid grid-cols-4 gap-6 w-full">
+      <app-product-view
+        *ngFor="let item of items | async"
+        [name]="item.name"
+        [price]="item.price"
+        [gender]="item.gender"
+      ></app-product-view>
+    </div>
+  </div>
+</div>

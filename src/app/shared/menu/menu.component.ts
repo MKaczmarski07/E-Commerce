@@ -17,7 +17,7 @@ export class MenuComponent {
   constructor() {
     this.menuState = this.windowWidth >= 1024 ? 'start' : 'hidden';
     this.subMenuState = this.menuState;
-    this.subMenuType = this.windowWidth >= 1024 ? 'women' : null;
+    this.subMenuType = this.windowWidth >= 1024 ? 'Women' : null;
     this.previousSubMenu = this.subMenuType;
   }
 

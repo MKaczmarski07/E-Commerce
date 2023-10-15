@@ -4,6 +4,7 @@
   align-items: center;
   gap: 0.3rem;
   font-weight: 500;
+  color: #000000b3;
   svg {
     width: 1.5rem;
     height: 1.5rem;
@@ -13,18 +14,27 @@
 .nav-li {
   cursor: pointer;
   padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  color: #000000b3;
+  font-weight: 500;
+
+  &:hover {
+    color: black;
+  }
 
   @media (min-width: 1024px) {
     padding: 1rem 1.5rem;
     &-active {
       background-color: white;
+      color: black;
     }
   }
 }
 
 .sub-menu {
   width: 100%;
-  padding: 1rem 3rem;
+  padding: 1rem 1.5rem;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -36,10 +46,15 @@
     margin-top: 0;
     height: auto;
   }
+
+  li {
+    cursor: pointer;
+  }
 }
 
 .hamburger {
-  &:hover {
-    background-color: #989898;
+  svg {
+    width: 1.75rem;
+    height: 1.75rem;
   }
 }

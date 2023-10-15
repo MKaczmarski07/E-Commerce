@@ -2,8 +2,23 @@
   <div
     class="py-4 lg:absolute lg:top-0 lg:left-[50%] bg-[#f4f4f4] flex justify-between px-12 lg:px-0"
   >
-    <a class="text-lg font-medium">SHOP</a>
-    <button class="lg:hidden hamburger" (click)="toggleMenu()">S</button>
+    <a routerLink="home" class="text-lg font-medium">SHOP</a>
+    <button class="lg:hidden hamburger" (click)="toggleMenu()">
+      <svg
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+        ></path>
+      </svg>
+    </button>
   </div>
   <div
     [@toggleMenu]="menuState"
@@ -11,33 +26,48 @@
   >
     <div class="flex flex-col lg:flex-row h-screen lg:h-auto">
       <div
-        class="lg:hidden py-4 flex items-center justify-between w-full bg-[#f4f4f4] px-12 border-b-2 border-[#ececec] box-border"
+        class="lg:hidden py-4 flex items-center justify-between w-full bg-[#f4f4f4] px-6 border-b-2 border-[#ececec] box-border"
       >
         <span class="font-medium leading-7">Menu</span>
-        <button class="hamburger" (click)="toggleMenu()">X</button>
+        <button class="hamburger" (click)="toggleMenu()">
+          <svg
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </button>
       </div>
       <div
-        class="px-12 bg-white lg:bg-[#f4f4f4] flex flex-col lg:flex-row w-full justify-between h-full"
+        class="px-6 bg-white lg:bg-[#f4f4f4] flex flex-col lg:flex-row w-full justify-between h-full"
       >
         <ul class="flex text-lg flex-col lg:flex-row">
           <li
-            [ngClass]="{ 'nav-li-active': subMenuType === 'women' }"
+            [ngClass]="{ 'nav-li-active': subMenuType === 'Women' }"
             class="nav-li"
-            (click)="toggleSubMenuType('women')"
+            (click)="toggleSubMenuType('Women')"
           >
             Women
           </li>
           <li
-            [ngClass]="{ 'nav-li-active': subMenuType === 'men' }"
+            [ngClass]="{ 'nav-li-active': subMenuType === 'Men' }"
             class="nav-li"
-            (click)="toggleSubMenuType('men')"
+            (click)="toggleSubMenuType('Men')"
           >
             Men
           </li>
           <li
-            [ngClass]="{ 'nav-li-active': subMenuType === 'kids' }"
+            [ngClass]="{ 'nav-li-active': subMenuType === 'Kids' }"
             class="nav-li"
-            (click)="toggleSubMenuType('kids')"
+            (click)="toggleSubMenuType('Kids')"
           >
             Kids
           </li>
@@ -112,31 +142,46 @@
     >
       <div
         *ngIf="subMenuType !== null"
-        class="lg:hidden py-4 flex items-center gap-3 w-full bg-[#f4f4f4] px-12 border-b-2 border-[#ececec] box-border"
+        class="lg:hidden py-4 flex items-center gap-3 w-full bg-[#f4f4f4] px-6 border-b-2 border-[#ececec] box-border"
       >
-        <button class="hamburger" (click)="subMenuState = 'hidden'">bck</button>
+        <button class="hamburger" (click)="subMenuState = 'hidden'">
+          <svg
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 19.5L8.25 12l7.5-7.5"
+            ></path>
+          </svg>
+        </button>
         <span class="font-medium leading-7">{{ subMenuType }}</span>
       </div>
-      <div *ngIf="subMenuType === 'women'" class="sub-menu">
-        <a>Shoes</a>
-        <a>Tops</a>
-        <a>Bottoms</a>
-        <a>Jackets</a>
-      </div>
+      <ul *ngIf="subMenuType === 'Women'" class="sub-menu">
+        <li routerLink="products/women/shoes">Shoes</li>
+        <li routerLink="products/women/tops">Tops</li>
+        <li>Bottoms</li>
+        <li>Jackets</li>
+      </ul>
 
-      <div *ngIf="subMenuType === 'men'" class="sub-menu">
-        <a>Shoes</a>
-        <a>T-Shirts</a>
-        <a>Bottoms</a>
-        <a>Jackets</a>
-      </div>
+      <ul *ngIf="subMenuType === 'Men'" class="sub-menu">
+        <li>Shoes</li>
+        <li>T-Shirts</li>
+        <li>Bottoms</li>
+        <li>Jackets</li>
+      </ul>
 
-      <div *ngIf="subMenuType === 'kids'" class="sub-menu">
-        <a>Shoes</a>
-        <a>Tops</a>
-        <a>Bottoms</a>
-        <a>Jackets</a>
-      </div>
+      <ul *ngIf="subMenuType === 'Kids'" class="sub-menu">
+        <li>Shoes</li>
+        <li>Tops</li>
+        <li>Bottoms</li>
+        <li>Jackets</li>
+      </ul>
     </div>
   </div>
   <div

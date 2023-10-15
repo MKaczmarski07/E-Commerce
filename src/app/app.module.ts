@@ -13,6 +13,7 @@ import { environment } from '../environments/environments';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { ProductsComponent } from './products/products.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
     MenuComponent,
     SliderComponent,
     ProductViewComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,
