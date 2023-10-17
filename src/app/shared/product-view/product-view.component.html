@@ -1,10 +1,14 @@
 <div class="flex flex-col gap-3 cursor-pointer">
   <div class="w-full h-auto aspect-square bg-slate-200 rounded-[5px]">
-    <img />
+    <img
+      [src]="src || '../../../assets/images/lazy-image.svg'"
+      class="w-full h-full"
+      alt="Cover-Image"
+      id="cover-img"
+    />
   </div>
   <div class="flex justify-between">
     <span>{{ name }}</span>
     <span class="font-medium">{{ price }}</span>
   </div>
-  <span class="text-[#717171]">{{ type }}</span>
 </div>

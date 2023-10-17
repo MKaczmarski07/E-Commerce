@@ -8,7 +8,8 @@
         *ngFor="let item of items | async"
         [name]="item.name"
         [price]="item.price"
-        [gender]="item.gender"
+        [for]="item.for"
+        [path]="item.path"
       ></app-product-view>
     </div>
   </div>

@@ -1,5 +1,7 @@
 export interface Item {
-  gender: string;
+  id: string;
+  path: string;
+  for: string;
   name: string;
   price: number;
 }
