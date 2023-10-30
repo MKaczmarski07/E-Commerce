@@ -14,7 +14,6 @@ export class ProductsComponent implements OnInit {
   category = '';
   subCategory = '';
   productType = '';
-  imageSource = '';
 
   constructor(
     private firebaseService: FirebaseService,
@@ -31,23 +30,10 @@ export class ProductsComponent implements OnInit {
   loadData() {
     this.category = this.route.snapshot.params['category'];
     this.subCategory = this.route.snapshot.params['subCategory'];
-    this.items = this.firebaseService
-      .getCollection(this.subCategory)
-      .pipe(
-        // filter out items that are not for the current category
-        map((items) => items.filter((item) => item.for === this.category))
-      )
-      .pipe(
-        // add path property to each item for image source
-        map((items) =>
-          items.map((item) => {
-            return {
-              ...item,
-              path: `${this.subCategory}/${item.id}.png`,
-            };
-          })
-        )
-      );
+    this.items = this.firebaseService.getCollection(this.subCategory).pipe(
+      // filter out items that are not for the current category
+      map((items) => items.filter((item) => item.for === this.category))
+    );
   }
 
   formatProductType() {

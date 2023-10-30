@@ -1,7 +1,8 @@
 export interface Item {
-  id: string;
-  path: string;
+  imageUrl: string;
   for: string;
   name: string;
   price: number;
+  shortDes: string;
+  longDes: string;
 }

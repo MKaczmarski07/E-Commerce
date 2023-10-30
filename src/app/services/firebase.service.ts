@@ -20,8 +20,8 @@ export class FirebaseService {
     return collectionData<Item>(CollectionRef);
   }
 
-  getImageUrl(path: string) {
-    const storageRef = ref(this.storage, path);
-    return getDownloadURL(storageRef);
-  }
+  // getImageUrl(path: string) {
+  //   const storageRef = ref(this.storage, path);
+  //   return getDownloadURL(storageRef);
+  // }
 }

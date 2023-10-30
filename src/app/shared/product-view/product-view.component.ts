@@ -10,24 +10,11 @@ export class ProductViewComponent implements OnInit {
   @Input() name = '';
   @Input() price = 0;
   @Input() for = '';
-  @Input() imageSource = '';
-  src = '';
+  @Input() imageUrl = '';
   @Input() path = '';
+  @Input() shortDes = '';
 
-  ngOnInit() {
-    this.setImageSource();
-  }
-
-  setImageSource() {
-    this.firebaseService
-      .getImageUrl(this.path)
-      .then((url) => {
-        this.src = url;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  ngOnInit() {}
 
   constructor(private firebaseService: FirebaseService) {}
 }
