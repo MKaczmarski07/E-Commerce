@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
 import { Observable, map } from 'rxjs';
 import { Item } from '../shared/item';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -14,10 +14,12 @@ export class ProductsComponent implements OnInit {
   category = '';
   subCategory = '';
   productType = '';
+  itemsID = '';
 
   constructor(
     private firebaseService: FirebaseService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -50,5 +52,11 @@ export class ProductsComponent implements OnInit {
 
   capitalizeFirstLetter(word: string) {
     return word.charAt(0).toUpperCase() + word.slice(1);
+  }
+
+  loadProduct(item: Item) {
+    const path =
+      'products/' + this.category + '/' + this.subCategory + '/' + item.id;
+    this.router.navigate([path]);
   }
 }

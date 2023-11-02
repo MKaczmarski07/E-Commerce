@@ -3,6 +3,7 @@ import { RouterModule, Routes, CanActivate, Router } from '@angular/router';
 import { RedirectGuard } from './services/redirect-guard.service';
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
+import { ProductDetailsComponent } from './shared/product-details/product-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -11,6 +12,10 @@ const routes: Routes = [
     path: 'products/:category/:subCategory',
     component: ProductsComponent,
     canActivate: [RedirectGuard],
+  },
+  {
+    path: 'products/:category/:subCategory/:id',
+    component: ProductDetailsComponent,
   },
   {
     path: '**',

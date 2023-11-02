@@ -15,6 +15,7 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { ProductsComponent } from './products/products.component';
+import { ProductDetailsComponent } from './shared/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ProductsComponent } from './products/products.component';
     SliderComponent,
     ProductViewComponent,
     ProductsComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,

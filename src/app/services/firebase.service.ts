@@ -1,17 +1,13 @@
 import { Injectable, inject } from '@angular/core';
 import { Firestore, collectionData } from '@angular/fire/firestore';
-import { collection } from 'firebase/firestore';
-import { Storage, getDownloadURL } from '@angular/fire/storage';
+import { collection, doc, getDoc } from 'firebase/firestore';
 import { Item } from '../shared/item';
-import { ref } from 'firebase/storage';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FirebaseService {
-  private firestore: Firestore = inject(Firestore);
-  private storage: Storage = inject(Storage);
+  public firestore: Firestore = inject(Firestore);
 
   constructor() {}
 
@@ -20,8 +16,10 @@ export class FirebaseService {
     return collectionData<Item>(CollectionRef);
   }
 
-  // getImageUrl(path: string) {
-  //   const storageRef = ref(this.storage, path);
-  //   return getDownloadURL(storageRef);
-  // }
+  async getItem(collectionName: string, id: string) {
+    const docRef = doc(this.firestore, collectionName, id) as any;
+    const docSnap = await getDoc(docRef);
+    console.log('Dodument ID: ' + docSnap.id); // it works !
+    return docSnap.data() as Item;
+  }
 }

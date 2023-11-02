@@ -7,6 +7,8 @@
 [Angular 🔗](https://angular.io)<br>
 [TypeScript 🔗](https://typescriptlang.org)<br>
 [Sass 🔗](https://sass-lang.com)<br>
+[Firebase Cloud Services 🔗](https://firebase.google.com)<br>
+[Angular Fire 🔗](https://github.com/angular/angularfire)<br>
 
 ## Installation Guide ⚙️
 

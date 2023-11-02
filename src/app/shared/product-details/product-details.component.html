@@ -1,0 +1,67 @@
+<div class="w-[70%] mx-auto my-9 flex gap-20">
+  <div class="w-1/2">
+    <img
+      [src]="item?.imageUrl || '../../../assets/images/lazy-image.svg'"
+      alt="Cover-Image"
+      id="cover-img"
+      class="rounded-[10px]"
+    />
+  </div>
+  <div class="flex flex-col gap-6 w-1/2">
+    <span class="font-medium text-3xl">{{ item?.name }}</span>
+    <span class="font-medium text-lg">{{ item?.shortDes }}</span>
+    <span class="font-medium text-lg">{{ item?.price }} €</span>
+
+    <div class="flex flex-wrap gap-3">
+      <button
+        *ngFor="let size of item?.sizes"
+        class="border-2 border-[#ededed] py-3 px-6 rounded-[10px] font-medium"
+      >
+        {{ size }}
+      </button>
+    </div>
+
+    <button class="bg-black text-white rounded-full py-5 leading-[1.125rem]">
+      <span class="font-medium text-lg">Log in to buy this product</span>
+    </button>
+
+    <button
+      class="flex gap-3 justify-center items-center rounded-full py-5 border-2 border-[#ededed]"
+    >
+      <span class="font-medium text-lg leading-[1.125rem]"
+        >Add to Favorites</span
+      >
+      <svg
+        class="w-5 h-5"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+        ></path>
+      </svg>
+    </button>
+
+    <p>
+      Moim zdaniem to nie ma tak, że dobrze albo że nie dobrze. Gdybym miał
+      powiedzieć, co cenię w życiu najbardziej, powiedziałbym, że ludzi. Ekhm...
+      Ludzi, którzy podali mi pomocną dłoń, kiedy sobie nie radziłem, kiedy
+      byłem sam. I co ciekawe, to właśnie przypadkowe spotkania wpływają na
+      nasze życie. Chodzi o to, że kiedy wyznaje się pewne wartości, nawet
+      pozornie uniwersalne, bywa, że nie znajduje się zrozumienia, które by tak
+      rzec, które pomaga się nam rozwijać. Ja miałem szczęście, by tak rzec,
+      ponieważ je znalazłem. I dziękuję życiu. Dziękuję mu, życie to śpiew,
+      życie to taniec, życie to miłość. Wielu ludzi pyta mnie o to samo, ale jak
+      ty to robisz?, skąd czerpiesz tę radość? A ja odpowiadam, że to proste, to
+      umiłowanie życia, to właśnie ono sprawia, że dzisiaj na przykład buduję
+      maszyny, a jutro... kto wie, dlaczego by nie, oddam się pracy społecznej i
+      będę ot, choćby sadzić... znaczy... marchew.
+    </p>
+  </div>
+</div>
