@@ -1,0 +1,57 @@
+<div
+  class="fixed top-0 left-0 w-full h-[calc(100svh)] bg-white flex justify-center items-center z-[100]"
+>
+  <span *ngIf="error" class="text-[#ff5050]">{{ error }}</span>
+  <span *ngIf="isLoading">Loading....</span>
+  <form
+    *ngIf="!isLoading"
+    [formGroup]="form"
+    class="flex flex-col gap-3"
+    (submit)="onSubmit()"
+  >
+    <input formControlName="email" type="text" placeholder="Username" />
+    <span
+      *ngIf="form.get('email')?.touched && !form.get('email')?.dirty"
+      class="text-[#ff5050]"
+      >This field cannot be empty.</span
+    >
+    <span
+      *ngIf="
+        form.get('email')?.touched &&
+        !form.get('email')?.valid &&
+        form.get('email')?.dirty
+      "
+      class="text-[#ff5050]"
+      >Please enter a valid email.</span
+    >
+    <input formControlName="password" type="password" placeholder="Password" />
+    <span
+      *ngIf="form.get('password')?.touched && !form.get('password')?.dirty"
+      class="text-[#ff5050]"
+      >This field cannot be empty.</span
+    >
+    <button (click)="isSignInMode = !isSignInMode">
+      <span> Change mode </span>
+    </button>
+    <button
+      *ngIf="!isSignInMode"
+      type="submit"
+      [disabled]="!form.valid"
+      [ngClass]="{
+        'cursor-not-allowed': !form.valid
+      }"
+    >
+      Sign Up
+    </button>
+    <button
+      *ngIf="isSignInMode"
+      type="submit"
+      [disabled]="!form.valid"
+      [ngClass]="{
+        'cursor-not-allowed': !form.valid
+      }"
+    >
+      Sign In
+    </button>
+  </form>
+</div>

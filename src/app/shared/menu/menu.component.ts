@@ -1,5 +1,8 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { ToggleMenu, ToggleVisivility } from '../animations';
+import { AuthService } from 'src/app/services/auth.service';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -7,18 +10,31 @@ import { ToggleMenu, ToggleVisivility } from '../animations';
   styleUrls: ['./menu.component.scss'],
   animations: [ToggleMenu, ToggleVisivility],
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit, OnDestroy {
   subMenuType: string | null;
   previousSubMenu: string | null;
   menuState: string = 'start';
   subMenuState: string;
   windowWidth = window.innerWidth;
+  isAuthenticated = false;
+  private userSub?: Subscription;
 
-  constructor() {
+  constructor(private authService: AuthService, private router: Router) {
     this.menuState = this.windowWidth >= 1024 ? 'start' : 'hidden';
     this.subMenuState = this.menuState;
     this.subMenuType = this.windowWidth >= 1024 ? 'Women' : null;
     this.previousSubMenu = this.subMenuType;
+  }
+
+  ngOnInit(): void {
+    this.userSub = this.authService.user.subscribe(
+      (user) => (this.isAuthenticated = !!user)
+    );
+  }
+
+  onLogOut() {
+    this.authService.logout();
+    this.router.navigate(['/home']);
   }
 
   @HostListener('window:resize', ['$event'])
@@ -57,5 +73,18 @@ export class MenuComponent {
       this.subMenuState = 'hidden';
       this.subMenuType = null;
     }
+  }
+
+  openCart() {
+    // if (!this.isAuthenticated) {
+    //   this.router.navigate(['/auth']);
+    //   return;
+    // } else {
+    this.router.navigate(['/cart']);
+    // }
+  }
+
+  ngOnDestroy() {
+    if (this.userSub) this.userSub.unsubscribe();
   }
 }

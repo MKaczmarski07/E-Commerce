@@ -22,6 +22,7 @@
     "@types/angularfire": "^0.8.36",
     "firebase": "^10.4.0",
     "keen-slider": "^6.8.6",
+    "reactive-forms": "^0.3.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

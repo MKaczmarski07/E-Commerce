@@ -22,7 +22,7 @@
   </div>
   <div
     [@toggleMenu]="menuState"
-    class="flex lg:flex-col flex-row lg:static fixed right-0 top-0 z-[999]"
+    class="flex lg:flex-col flex-row lg:static fixed right-0 top-0 z-[5]"
   >
     <div class="flex flex-col lg:flex-row h-screen lg:h-auto">
       <div
@@ -99,7 +99,7 @@
             </svg>
             0
           </button>
-          <button class="nav-button">
+          <button class="nav-button" (click)="openCart()">
             <svg
               fill="none"
               stroke="currentColor"
@@ -116,7 +116,7 @@
             </svg>
             0
           </button>
-          <button class="nav-button">
+          <button class="nav-button" routerLink="/auth">
             <svg
               fill="none"
               stroke="currentColor"
@@ -131,6 +131,13 @@
                 d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
               ></path>
             </svg>
+          </button>
+          <button
+            class="nav-button"
+            *ngIf="isAuthenticated"
+            (click)="onLogOut()"
+          >
+            <span>LogOut</span>
           </button>
         </div>
       </div>
@@ -190,6 +197,6 @@
     *ngIf="menuState === 'visible'"
     [@toggleVisibility]
     (click)="toggleMenu()"
-    class="w-screen h-screen bg-black opacity-20 fixed top-0 left-0 z-[998]"
+    class="w-screen h-screen bg-black opacity-20 fixed top-0 left-0 z-[4]"
   ></div>
 </nav>

@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, CanActivate, Router } from '@angular/router';
-import { RedirectGuard } from './services/redirect-guard.service';
+import { RedirectGuard } from './guards/redirect.guard';
+import { AuthGuard } from './guards/auth.guard';
+
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailsComponent } from './shared/product-details/product-details.component';
+import { AuthComponent } from './auth/auth.component';
+import { ShoppingcartComponent } from './shoppingcart/shoppingcart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,6 +21,12 @@ const routes: Routes = [
     path: 'products/:category/:subCategory/:id',
     component: ProductDetailsComponent,
   },
+  { path: 'auth', component: AuthComponent },
+  {
+    path: 'cart',
+    component: ShoppingcartComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: '**',
     redirectTo: '/home',
@@ -27,6 +37,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [RedirectGuard],
+  providers: [RedirectGuard, AuthGuard],
 })
 export class AppRoutingModule {}

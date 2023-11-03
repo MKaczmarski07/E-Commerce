@@ -19,7 +19,6 @@ export class FirebaseService {
   async getItem(collectionName: string, id: string) {
     const docRef = doc(this.firestore, collectionName, id) as any;
     const docSnap = await getDoc(docRef);
-    console.log('Dodument ID: ' + docSnap.id); // it works !
     return docSnap.data() as Item;
   }
 }
