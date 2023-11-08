@@ -56,4 +56,9 @@ export class AuthComponent {
 
     this.form.reset();
   }
+
+  showPassword() {
+    const password = document.getElementById('password') as HTMLInputElement;
+    password.type = password.type === 'password' ? 'text' : 'password';
+  }
 }
