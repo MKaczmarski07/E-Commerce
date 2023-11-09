@@ -3,11 +3,11 @@ import { RouterModule, Routes, CanActivate, Router } from '@angular/router';
 import { RedirectGuard } from './guards/redirect.guard';
 import { AuthGuard } from './guards/auth.guard';
 
-import { HomeComponent } from './home/home.component';
-import { ProductsComponent } from './products/products.component';
-import { ProductDetailsComponent } from './shared/product-details/product-details.component';
-import { AuthComponent } from './auth/auth.component';
-import { ShoppingcartComponent } from './shoppingcart/shoppingcart.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { AuthComponent } from './pages/auth/auth.component';
+import { ShoppingcartComponent } from './pages/shoppingcart/shoppingcart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },

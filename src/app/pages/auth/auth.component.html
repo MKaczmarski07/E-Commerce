@@ -1,12 +1,29 @@
 <div
   class="fixed top-0 left-0 w-full h-[calc(100svh)] bg-white flex flex-col justify-center items-center z-[100]"
 >
+  <button routerLink="/home" class="fixed top-6 left-6 text-[#424242]">
+    <svg
+      class="w-6 h-6"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+      ></path>
+    </svg>
+  </button>
   <span *ngIf="error" class="text-[#ff5050]">{{ error }}</span>
   <span *ngIf="isLoading">Loading....</span>
   <form
     *ngIf="!isLoading"
     [formGroup]="form"
-    class="flex flex-col gap-9"
+    class="flex flex-col gap-9 w-full px-6 max-w-[25rem]"
     (submit)="onSubmit()"
   >
     <div class="flex flex-col gap-3">
@@ -43,6 +60,7 @@
           placeholder="Enter password"
         />
         <button
+          type="button"
           (click)="showPassword()"
           class="text-[#424242] absolute right-4 top-[50%] translate-y-[-50%]"
         >
@@ -85,6 +103,7 @@
             placeholder="Enter password again"
           />
           <button
+            type="button"
             (click)="showPassword()"
             class="text-[#424242] absolute right-4 top-[50%] translate-y-[-50%]"
           >

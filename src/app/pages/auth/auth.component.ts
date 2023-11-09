@@ -5,9 +5,9 @@ import {
   Validators,
   FormBuilder,
 } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs';
-import { AuthResponseData } from '../services/auth.service';
+import { AuthResponseData } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({

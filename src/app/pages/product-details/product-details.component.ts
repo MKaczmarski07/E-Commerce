@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { Item } from '../../shared/item';
+import { Item } from '../../models/item';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
