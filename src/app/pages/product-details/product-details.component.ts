@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from 'src/app/services/firebase.service';
+import { DatabaseService } from 'src/app/services/database.service';
 import { Item } from '../../models/item';
 import { ActivatedRoute } from '@angular/router';
 
@@ -14,7 +14,7 @@ export class ProductDetailsComponent implements OnInit {
   id = '';
 
   constructor(
-    private firebaseService: FirebaseService,
+    private databaseService: DatabaseService,
     private route: ActivatedRoute
   ) {}
 
@@ -25,7 +25,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getData() {
-    this.firebaseService.getItem(this.collection, this.id).then((item) => {
+    this.databaseService.getItem(this.collection, this.id).then((item) => {
       this.item = item;
       console.log(this.item);
     });

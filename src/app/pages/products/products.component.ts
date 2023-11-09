@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../../services/firebase.service';
+import { DatabaseService } from '../../services/database.service';
 import { Observable, map } from 'rxjs';
 import { Item } from '../../models/item';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,7 +17,7 @@ export class ProductsComponent implements OnInit {
   itemsID = '';
 
   constructor(
-    private firebaseService: FirebaseService,
+    private databaseService: DatabaseService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -32,7 +32,7 @@ export class ProductsComponent implements OnInit {
   loadData() {
     this.category = this.route.snapshot.params['category'];
     this.subCategory = this.route.snapshot.params['subCategory'];
-    this.items = this.firebaseService.getCollection(this.subCategory).pipe(
+    this.items = this.databaseService.getCollection(this.subCategory).pipe(
       // filter out items that are not for the current category
       map((items) => items.filter((item) => item.for === this.category))
     );

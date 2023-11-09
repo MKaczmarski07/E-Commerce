@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../../services/firebase.service';
+import { DatabaseService } from '../../services/database.service';
 import { Observable } from 'rxjs';
 import { Item } from '../../models/item';
 
@@ -11,10 +11,10 @@ import { Item } from '../../models/item';
 export class HomeComponent implements OnInit {
   shoes: Observable<Item[]> | undefined;
 
-  constructor(private firebaseService: FirebaseService) {}
+  constructor(private databaseService: DatabaseService) {}
 
   ngOnInit() {
-    this.shoes = this.firebaseService.getCollection('shoes');
+    this.shoes = this.databaseService.getCollection('shoes');
   }
 
   // duplikacja kodu

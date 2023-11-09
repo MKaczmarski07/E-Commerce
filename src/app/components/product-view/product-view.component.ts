@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FirebaseService } from '../../services/firebase.service';
 
 @Component({
   selector: 'app-product-view',
@@ -15,6 +14,4 @@ export class ProductViewComponent implements OnInit {
   @Input() shortDes = '';
 
   ngOnInit() {}
-
-  constructor(private firebaseService: FirebaseService) {}
 }

@@ -61,7 +61,7 @@
         />
         <button
           type="button"
-          (click)="showPassword()"
+          (click)="showPassword('password')"
           class="text-[#424242] absolute right-4 top-[50%] translate-y-[-50%]"
         >
           <svg
@@ -91,20 +91,33 @@
         class="text-[#ff5050]"
         >This field cannot be empty.</span
       >
-      <label for="password-repeated">Repeat password</label>
+      <span
+        *ngIf="
+          !isSignInMode &&
+          form.get('password')?.touched &&
+          form.get('password')?.invalid &&
+          form.get('password')?.dirty
+        "
+        class="text-[#ff5050]"
+      >
+        Password must be at least 6 characters long.
+      </span>
+      <label *ngIf="!isSignInMode" for="password-repeated"
+        >Repeat password</label
+      >
       <div *ngIf="!isSignInMode">
         <div class="relative">
           <input
             id="password-repeated"
             class="form-input password-input"
-            formControlName="password"
+            formControlName="repeatedPassword"
             type="password"
             name="password-repeated"
             placeholder="Enter password again"
           />
           <button
             type="button"
-            (click)="showPassword()"
+            (click)="showPassword('password-repeated')"
             class="text-[#424242] absolute right-4 top-[50%] translate-y-[-50%]"
           >
             <svg
@@ -129,6 +142,24 @@
             </svg>
           </button>
         </div>
+        <span
+          *ngIf="
+            form.get('repeatedPassword')?.touched &&
+            !form.get('repeatedPassword')?.dirty
+          "
+          class="text-[#ff5050]"
+          >This field cannot be empty.</span
+        >
+        <span
+          *ngIf="
+            form.get('repeatedPassword')?.touched &&
+            form.get('repeatedPassword')?.invalid &&
+            form.get('repeatedPassword')?.dirty
+          "
+          class="text-[#ff5050]"
+        >
+          Passwords are not the same.
+        </span>
       </div>
     </div>
     <button
@@ -137,7 +168,7 @@
       [disabled]="!form.valid"
       class="submit-btn"
       [ngClass]="{
-        'cursor-not-allowed': !form.valid
+        'btn-disabled': !form.valid
       }"
     >
       Sign Up
@@ -148,20 +179,26 @@
       [disabled]="!form.valid"
       class="submit-btn"
       [ngClass]="{
-        'cursor-not-allowed': !form.valid
+        'btn-disabled': !form.valid
       }"
     >
       Sign In
     </button>
     <div *ngIf="isSignInMode" class="flex justify-center gap-3">
       <span> Don't have an account?</span>
-      <button class="text-[#007aff]" (click)="isSignInMode = false">
+      <button
+        class="text-[#007aff]"
+        (click)="isSignInMode = false; resetForm(); changeValidator()"
+      >
         <span>Sign up now</span>
       </button>
     </div>
     <div *ngIf="!isSignInMode" class="flex justify-center gap-3">
       <span> Arleady have an account?</span>
-      <button class="text-[#007aff]" (click)="isSignInMode = true">
+      <button
+        class="text-[#007aff]"
+        (click)="isSignInMode = true; resetForm(); changeValidator()"
+      >
         <span>Sign in</span>
       </button>
     </div>

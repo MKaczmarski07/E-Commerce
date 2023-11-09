@@ -25,8 +25,9 @@
   color: white;
   font-weight: 500;
   transition: all 0.2s ease-in-out;
+}
 
-  &:hover {
-    background-color: #246ab4;
-  }
+.btn-disabled {
+  background-color: #246ab4;
+  cursor: not-allowed;
 }
