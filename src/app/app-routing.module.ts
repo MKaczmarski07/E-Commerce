@@ -7,7 +7,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { AuthComponent } from './pages/auth/auth.component';
-import { ShoppingcartComponent } from './pages/shoppingcart/shoppingcart.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'auth', component: AuthComponent },
   {
     path: 'cart',
-    component: ShoppingcartComponent,
+    component: CartComponent,
     canActivate: [AuthGuard],
   },
   {

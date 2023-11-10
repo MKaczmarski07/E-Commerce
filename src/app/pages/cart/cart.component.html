@@ -1,0 +1,34 @@
+<div
+  class="w-full mx-auto max-w-[70rem] gap-9 flex lg:flex-row flex-col-reverse p-6"
+>
+  <div class="lg:w-[70%] w-full flex flex-col gap-6">
+    <h1 class="text-3xl font-medium">Cart</h1>
+    <!-- <p class="text-gray-500">Your cart is empty</p> -->
+    <app-cart-item></app-cart-item>
+    <app-cart-item></app-cart-item>
+    <app-cart-item></app-cart-item>
+  </div>
+  <div class="lg:w-[30%] min-w-[15rem] w-full flex flex-col gap-6">
+    <span class="text-3xl font-medium">Summary</span>
+    <div class="flex flex-col gap-3">
+      <div class="flex justify-between">
+        <span>Subtotal</span>
+        <span>{{ subTotal.toFixed(2) }} €</span>
+      </div>
+      <div class="flex justify-between">
+        <span>Shipping</span>
+        <span>{{ shipping.toFixed(2) }} €</span>
+      </div>
+
+      <div class="flex justify-between border-y-2 border-[#e5e5e5] py-2">
+        <span>Total</span>
+        <span>{{ total.toFixed(2) }} €</span>
+      </div>
+    </div>
+    <button
+      class="w-full p-3 rounded-full bg-black hover:bg-[#404040] text-white font-medium transition-all duration-200"
+    >
+      Checkout
+    </button>
+  </div>
+</div>

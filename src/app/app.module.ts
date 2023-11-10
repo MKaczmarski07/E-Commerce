@@ -19,7 +19,9 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { AuthComponent } from './pages/auth/auth.component';
-import { ShoppingcartComponent } from './pages/shoppingcart/shoppingcart.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { CartItemComponent } from './components/cart-item/cart-item.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { ShoppingcartComponent } from './pages/shoppingcart/shoppingcart.compone
     ProductsComponent,
     ProductDetailsComponent,
     AuthComponent,
-    ShoppingcartComponent,
+    CartComponent,
+    CartItemComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 export interface Item {
   id: string;
+  category: string;
   imageUrl: string;
   for: string;
   name: string;

@@ -58,5 +58,6 @@ export class ProductsComponent implements OnInit {
     const path =
       'products/' + this.category + '/' + this.subCategory + '/' + item.id;
     this.router.navigate([path]);
+    window.scrollTo(0, 0);
   }
 }
