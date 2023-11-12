@@ -1,20 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Item } from '../../models/item';
+import { CartService } from '../../services/cart.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
+  cartItems: Item[] = [];
+  private cartItemsSub?: Subscription;
   subTotal: number = 0;
   shipping: number = 0;
   total: number = 0;
 
-  constructor() {}
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.subTotal = 1.23;
-    this.shipping = 3.5;
+    this.cartItems = this.cartService.getCartItems();
+    this.calculateValues();
+    this.cartItemsSub = this.cartService.cartItemsCount$.subscribe(() => {
+      this.cartItems = this.cartService.getCartItems();
+      this.calculateValues();
+    });
+  }
+
+  calculateValues() {
+    this.subTotal = this.cartItems.reduce((acc, item) => acc + item.price, 0);
+    this.shipping = this.subTotal > 100 ? 0 : 10;
     this.total = this.subTotal + this.shipping;
+  }
+
+  onCheckout() {
+    if (this.cartItems.length > 0) {
+      this.cartService.checkout();
+    }
+  }
+
+  ngOnDestroy() {
+    this.cartItemsSub?.unsubscribe();
   }
 }

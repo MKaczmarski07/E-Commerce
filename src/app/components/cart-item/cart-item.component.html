@@ -1,16 +1,18 @@
 <div class="w-full flex justify-between border-b-[1.8px] border-[#e5e5e5] py-6">
   <div class="w-full flex gap-6">
-    <div class="h-full aspect-square">
+    <div class="w-full aspect-square">
       <img
-        src="../../../assets/images/lazy-image.svg"
+        [src]="imageUrl || '../../../assets/images/lazy-image.svg'"
         alt="product-photo"
         class="rounded-[5px] h-full w-full object-cover"
       />
     </div>
     <div class="w-full flex flex-col gap-3">
-      <span class="font-medium sm:hidden">200.00 €</span>
-      <span class="font-medium">Air Jordan</span>
-      <span class="text-[#505050]">Buty męskie</span>
+      <span class="font-medium sm:hidden"
+        >{{ price | number : "1.2-2" }} €</span
+      >
+      <span class="font-medium">{{ name }}</span>
+      <span class="text-[#505050]">{{ shortDes }}</span>
       <span class="text-[#505050]">Size: 42</span>
       <div class="flex gap-3">
         <button>
@@ -30,7 +32,7 @@
             ></path>
           </svg>
         </button>
-        <button>
+        <button (click)="onItemDelete()">
           <svg
             class="h-6 w-6"
             fill="none"
@@ -51,6 +53,6 @@
     </div>
   </div>
   <div class="w-full sm:flex justify-end hidden">
-    <span class="font-medium">200.00 €</span>
+    <span class="font-medium">{{ price | number : "1.2-2" }} €</span>
   </div>
 </div>
