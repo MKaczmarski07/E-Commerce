@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Item } from '../../models/item';
 import { CartService } from '../../services/cart.service';
 import { Subscription } from 'rxjs';
+import { CartItem } from 'src/app/models/cart-item';
 
 @Component({
   selector: 'app-cart',
@@ -9,7 +10,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit, OnDestroy {
-  cartItems: Item[] = [];
+  cartItems: CartItem[] = [];
   private cartItemsSub?: Subscription;
   subTotal: number = 0;
   shipping: number = 0;
@@ -27,7 +28,10 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   calculateValues() {
-    this.subTotal = this.cartItems.reduce((acc, item) => acc + item.price, 0);
+    this.subTotal = this.cartItems.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0
+    );
     this.shipping = this.subTotal > 100 ? 0 : 10;
     this.total = this.subTotal + this.shipping;
   }

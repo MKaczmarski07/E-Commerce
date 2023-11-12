@@ -20,6 +20,7 @@
         *ngFor="let size of item?.sizes"
         class="border-2 border-[#ececec] hover:border-black py-3 px-6 rounded-[10px] font-medium"
         (click)="onSelectSize(size)"
+        [ngClass]="{ 'border-black': selectedSize === size }"
       >
         {{ size }}
       </button>

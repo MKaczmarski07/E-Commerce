@@ -37,7 +37,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.userSub = this.authService.user.subscribe(
       (user) => (this.isAuthenticated = !!user)
     );
-    this.catrtItemsCount = this.cartService.getCartItems().length;
+    this.catrtItemsCount = this.cartService.initCartItemsCount();
     this.cartItemsSub = this.cartService.cartItemsCount$.subscribe(
       (count) => (this.catrtItemsCount = count)
     );

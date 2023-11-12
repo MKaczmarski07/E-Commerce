@@ -13,9 +13,10 @@ export class CartItemComponent {
   @Input() price = 0;
   @Input() size = '';
   @Input() imageUrl = '';
+  @Input() quantity = 0;
   constructor(private cartService: CartService) {}
 
   onItemDelete() {
-    this.cartService.removeFromCart(this.id);
+    this.cartService.removeFromCart(this.id, this.size);
   }
 }

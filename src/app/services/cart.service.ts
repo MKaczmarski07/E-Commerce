@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Item } from '../models/item';
 import { Subject } from 'rxjs';
-
-export interface CartItem extends Item {
-  size: string;
-}
+import { CartItem } from '../models/cart-item';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +13,22 @@ export class CartService {
 
   private updateCartItemsCount() {
     const cartItems = this.getCartItems();
-    this.cartItemsCount.next(cartItems.length);
+    const cartItemsCount = cartItems.reduce(
+      (acc, item) => acc + item.quantity,
+      0
+    );
+    const sum = cartItemsCount === 1 ? cartItems.length : cartItemsCount;
+    this.cartItemsCount.next(sum);
+  }
+
+  initCartItemsCount() {
+    // set initial cart items count on page load
+    const cartItems = this.getCartItems();
+    const cartItemsCount = cartItems.reduce(
+      (acc, item) => acc + item.quantity,
+      0
+    );
+    return cartItems.length + cartItemsCount;
   }
 
   getCartItems(): CartItem[] {
@@ -31,14 +42,30 @@ export class CartService {
 
   addToCart(cartItem: CartItem) {
     let cartItems = this.getCartItems();
+    if (
+      cartItems.find(
+        (item) => item.id === cartItem.id && item.size === cartItem.size
+      )
+    ) {
+      cartItems = cartItems.map((item) =>
+        item.id === cartItem.id && item.size === cartItem.size
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      this.updateCartItemsCount();
+      return;
+    }
     cartItems.push(cartItem);
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
     this.updateCartItemsCount();
   }
 
-  removeFromCart(id: string) {
+  removeFromCart(id: string, size: string) {
     let cartItems = this.getCartItems();
-    cartItems = cartItems.filter((cartItem) => cartItem.id !== id);
+    cartItems = cartItems.filter(
+      (item) => !(item.id === id && (size ? item.size === size : true))
+    );
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
     this.updateCartItemsCount();
   }
