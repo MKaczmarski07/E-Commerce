@@ -22,6 +22,8 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
+import { FavoriteItemComponent } from './components/favorite-item/favorite-item.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { FooterComponent } from './shared/footer/footer.component';
     CartComponent,
     CartItemComponent,
     FooterComponent,
+    FavoritesComponent,
+    FavoriteItemComponent,
   ],
   imports: [
     BrowserModule,

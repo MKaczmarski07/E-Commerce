@@ -25,10 +25,11 @@ export class CartService {
     // set initial cart items count on page load
     const cartItems = this.getCartItems();
     const cartItemsCount = cartItems.reduce(
-      (acc, item) => acc + item.quantity,
+      (acc, item) => (item.quantity = acc + item.quantity),
       0
     );
-    return cartItems.length + cartItemsCount;
+    console.log(cartItemsCount);
+    return cartItemsCount;
   }
 
   getCartItems(): CartItem[] {
@@ -71,6 +72,7 @@ export class CartService {
   }
 
   checkout() {
+    // guard nie w dodawaniu do koszyka tylko dopiero przy zamawaiu
     // simulate checkout process
     localStorage.removeItem('cartItems');
     this.updateCartItemsCount();

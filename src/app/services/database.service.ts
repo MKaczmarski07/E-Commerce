@@ -11,14 +11,24 @@ export class DatabaseService {
 
   constructor() {}
 
-  getCollection(collectionName: string) {
-    const CollectionRef = collection(this.firestore, collectionName) as any;
+  getCollection() {
+    const CollectionRef = collection(this.firestore, 'products') as any;
     return collectionData<Item>(CollectionRef);
   }
 
-  async getItem(collectionName: string, id: string) {
-    const docRef = doc(this.firestore, collectionName, id) as any;
+  async getItem(id: string): Promise<Item> {
+    const docRef = doc(this.firestore, 'products', id) as any;
     const docSnap = await getDoc(docRef);
     return docSnap.data() as Item;
+  }
+
+  async getItemsbyIDs(ids: string[]): Promise<Item[]> {
+    const items: Item[] = [];
+    for (const id of ids) {
+      const docRef = doc(this.firestore, 'products', id) as any;
+      const docSnap = await getDoc(docRef);
+      items.push(docSnap.data() as Item);
+    }
+    return items;
   }
 }

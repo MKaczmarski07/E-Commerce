@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../../services/database.service';
+import { LoadProductService } from 'src/app/services/load-product.service';
 import { Observable } from 'rxjs';
 import { Item } from '../../models/item';
 import { Router } from '@angular/router';
@@ -14,16 +15,15 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private databaseService: DatabaseService,
+    private loadProductService: LoadProductService,
     private router: Router
   ) {}
 
   ngOnInit() {
-    this.shoes = this.databaseService.getCollection('shoes');
+    this.shoes = this.databaseService.getCollection();
   }
 
-  loadProduct(item: Item) {
-    const path = 'products/' + item.for + '/' + item.category + '/' + item.id;
-    this.router.navigate([path]);
-    window.scrollTo(0, 0);
+  onProductClick(item: Item) {
+    this.loadProductService.loadProduct(item);
   }
 }

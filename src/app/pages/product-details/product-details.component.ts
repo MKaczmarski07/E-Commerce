@@ -7,6 +7,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { CartItem } from '../../models/cart-item';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
+import { FavoritesService } from '../../services/favorites.service';
 
 @Component({
   selector: 'app-product-details',
@@ -25,6 +26,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     private databaseService: DatabaseService,
     private authService: AuthService,
     private cartService: CartService,
+    private favoritesService: FavoritesService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -33,13 +35,13 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     this.userSub = this.authService.user.subscribe(
       (user) => (this.isAuthenticated = !!user)
     );
-    this.collection = this.route.snapshot.params['subCategory'];
+    this.collection = this.route.snapshot.params['category'];
     this.id = this.route.snapshot.params['id'];
     this.getData();
   }
 
   getData() {
-    this.databaseService.getItem(this.collection, this.id).then((item) => {
+    this.databaseService.getItem(this.id).then((item) => {
       if (item) {
         this.item = item;
       } else {
@@ -54,10 +56,6 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   }
 
   onAddToCart() {
-    if (!this.isAuthenticated) {
-      this.router.navigate(['/auth']);
-      return;
-    }
     if (this.item && this.selectedSize) {
       const cartItem: CartItem = {
         ...this.item,
@@ -69,12 +67,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   }
 
   onAddToFavorites() {
-    if (!this.isAuthenticated) {
-      this.router.navigate(['/auth']);
-      return;
-    }
     if (this.item) {
-      console.log(this.item);
+      this.favoritesService.addToFavorites(this.item.id);
     }
   }
 

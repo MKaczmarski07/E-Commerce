@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { ToggleMenu, ToggleVisivility } from '../animations';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
+import { FavoritesService } from 'src/app/services/favorites.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -20,11 +21,14 @@ export class MenuComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
   private userSub?: Subscription;
   private cartItemsSub?: Subscription;
+  private favoritesSub?: Subscription;
   catrtItemsCount = 0;
+  favoritesCount = 0;
 
   constructor(
     private authService: AuthService,
     private cartService: CartService,
+    private favoritesService: FavoritesService,
     private router: Router
   ) {
     this.menuState = this.windowWidth >= 1024 ? 'start' : 'hidden';
@@ -40,6 +44,10 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.catrtItemsCount = this.cartService.initCartItemsCount();
     this.cartItemsSub = this.cartService.cartItemsCount$.subscribe(
       (count) => (this.catrtItemsCount = count)
+    );
+    this.favoritesCount = this.favoritesService.initFavoritesCound();
+    this.favoritesSub = this.favoritesService.favorites$.subscribe(
+      (count) => (this.favoritesCount = count)
     );
   }
 
@@ -86,12 +94,9 @@ export class MenuComponent implements OnInit, OnDestroy {
     }
   }
 
-  openCart() {
-    this.router.navigate(['/cart']);
-  }
-
   ngOnDestroy() {
     if (this.userSub) this.userSub.unsubscribe();
     if (this.cartItemsSub) this.cartItemsSub.unsubscribe();
+    if (this.favoritesSub) this.favoritesSub.unsubscribe();
   }
 }
