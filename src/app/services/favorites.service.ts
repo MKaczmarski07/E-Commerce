@@ -19,6 +19,10 @@ export class FavoritesService {
     return this.getFavorites().length;
   }
 
+  /* 
+  In normal app there would be a call to the backend and information about favorite products would be user's data stored in a database. Local Storage is used for live demo purposes only. 
+  */
+
   getFavorites(): string[] {
     let favorites = [];
     const favoritesString = localStorage.getItem('favorites');

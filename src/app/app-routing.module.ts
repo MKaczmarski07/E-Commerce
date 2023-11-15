@@ -9,6 +9,7 @@ import { ProductDetailsComponent } from './pages/product-details/product-details
 import { AuthComponent } from './pages/auth/auth.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -24,9 +25,13 @@ const routes: Routes = [
   },
   { path: 'auth', component: AuthComponent },
   {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'cart',
     component: CartComponent,
-    canActivate: [AuthGuard],
   },
   {
     path: 'favorites',

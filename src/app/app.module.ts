@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +25,7 @@ import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { FavoriteItemComponent } from './components/favorite-item/favorite-item.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -40,12 +42,14 @@ import { FavoriteItemComponent } from './components/favorite-item/favorite-item.
     FooterComponent,
     FavoritesComponent,
     FavoriteItemComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

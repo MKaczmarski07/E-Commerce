@@ -1,0 +1,73 @@
+<div class="w-full mx-auto max-w-[40rem] gap-16 p-6">
+  <form class="flex flex-col gap-3" [formGroup]="form" (submit)="onSubmit()">
+    <label for="name">Name</label>
+    <input
+      formControlName="name"
+      class="form-input"
+      type="text"
+      id="name"
+      placeholder="Enter product name"
+    />
+
+    <label for="price">Price</label>
+    <input
+      formControlName="price"
+      class="form-input"
+      type="number"
+      id="price"
+      placeholder="Enter product price"
+    />
+
+    <label for="for">For</label>
+    <select
+      formControlName="for"
+      class="form-select"
+      id="for"
+      [(ngModel)]="selectedFor"
+      name="selectedFor"
+    >
+      <option value="women">Women</option>
+      <option value="men">Men</option>
+      <option value="kids">Kids</option>
+    </select>
+
+    <label for="category" name="selectedCategory">Category</label>
+    <select formControlName="category" class="form-select" id="category">
+      <ng-container *ngIf="selectedFor === 'women'">
+        <option value="women">Shoes</option>
+        <option value="men">Bras</option>
+        <option value="kids">Tops</option>
+      </ng-container>
+      <ng-container *ngIf="selectedFor === 'men'">
+        <option value="women">Shoes</option>
+        <option value="men">Tops</option>
+        <option value="kids">Bottoms</option>
+      </ng-container>
+      <ng-container *ngIf="selectedFor === 'kids'">
+        <option value="tops">Tops</option>
+        <option value="bottoms">Bottoms</option>
+      </ng-container>
+    </select>
+
+    <label for="shortDes">Short Description</label>
+    <textarea
+      formControlName="shortDes"
+      class="form-textarea form-input"
+      id="shortDes"
+      rows="3"
+    ></textarea>
+
+    <label for="longDes">Full Description</label>
+    <textarea
+      formControlName="longDes"
+      class="form-textarea form-input"
+      id="longDes"
+      rows="3"
+    ></textarea>
+
+    <label for="image">Product Image</label>
+    <input type="file" class="form-control-file" id="image" />
+
+    <button type="submit" class="submit-btn">Submit</button>
+  </form>
+</div>
