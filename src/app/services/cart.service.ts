@@ -28,7 +28,6 @@ export class CartService {
       (acc, item) => (item.quantity = acc + item.quantity),
       0
     );
-    console.log(cartItemsCount);
     return cartItemsCount;
   }
 
@@ -72,7 +71,6 @@ export class CartService {
   }
 
   checkout() {
-    // guard nie w dodawaniu do koszyka tylko dopiero przy zamawaiu
     // simulate checkout process
     localStorage.removeItem('cartItems');
     this.updateCartItemsCount();

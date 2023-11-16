@@ -23,30 +23,24 @@
       formControlName="for"
       class="form-select"
       id="for"
-      [(ngModel)]="selectedFor"
       name="selectedFor"
+      (change)="changeFor($event)"
     >
-      <option value="women">Women</option>
-      <option value="men">Men</option>
-      <option value="kids">Kids</option>
+      <option *ngFor="let for of forOptions" [ngValue]="for">
+        {{ for }}
+      </option>
     </select>
 
     <label for="category" name="selectedCategory">Category</label>
-    <select formControlName="category" class="form-select" id="category">
-      <ng-container *ngIf="selectedFor === 'women'">
-        <option value="women">Shoes</option>
-        <option value="men">Bras</option>
-        <option value="kids">Tops</option>
-      </ng-container>
-      <ng-container *ngIf="selectedFor === 'men'">
-        <option value="women">Shoes</option>
-        <option value="men">Tops</option>
-        <option value="kids">Bottoms</option>
-      </ng-container>
-      <ng-container *ngIf="selectedFor === 'kids'">
-        <option value="tops">Tops</option>
-        <option value="bottoms">Bottoms</option>
-      </ng-container>
+    <select
+      (change)="changeCategory($event)"
+      formControlName="category"
+      class="form-select"
+      id="category"
+    >
+      <option *ngFor="let category of categories" [ngValue]="category">
+        {{ category }}
+      </option>
     </select>
 
     <label for="shortDes">Short Description</label>
@@ -66,8 +60,17 @@
     ></textarea>
 
     <label for="image">Product Image</label>
-    <input type="file" class="form-control-file" id="image" />
+    <input
+      (input)="handleImage($event)"
+      formControlName="image"
+      type="file"
+      class="form-control-file"
+      id="image"
+    />
 
-    <button type="submit" class="submit-btn">Submit</button>
+    <button type="submit" class="submit-btn">Add Item</button>
+    <span *ngIf="showError" class="text-[#ff5050] w-full text-center"
+      >Please complete all fields!</span
+    >
   </form>
 </div>

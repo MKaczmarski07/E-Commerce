@@ -8,7 +8,6 @@ import {
   getDownloadURL,
 } from '@angular/fire/storage';
 import { Item } from '../models/item';
-import { set, update } from 'firebase/database';
 
 @Injectable({
   providedIn: 'root',
@@ -41,6 +40,7 @@ export class DatabaseService {
   }
 
   async addProduct(item: Item): Promise<string> {
+    // add product to collection and return the ID of the added document
     const CollectionRef = collection(this.firestore, 'products') as any;
     let ID = '';
     await addDoc(CollectionRef, item).then((docRef) => {
@@ -49,29 +49,58 @@ export class DatabaseService {
     return ID;
   }
 
-  async setProductData(item: Item) {
-    this.addProduct(item).then((ID) => {
-      this.getItem(ID).then((item) => {
-        item.id = ID;
-        const docRef = doc(this.firestore, 'products', ID) as any;
-        setDoc(docRef, item);
-      });
-    });
+  async setProductData(item: Item, file: any) {
+    try {
+      // Add product and get the ID
+      const ID = await this.addProduct(item);
+
+      // Upload image to storage and get the URL
+      const url = await this.uploadFile(file, ID);
+
+      if (!url) {
+        console.error('Image upload failed');
+        return;
+      }
+
+      console.log('Image URL:', url);
+
+      // Set product data
+      const itemData = await this.getItem(ID);
+
+      if (itemData) {
+        itemData.id = ID;
+        itemData.imageUrl = url;
+        const docRef = doc(this.firestore, 'products', ID);
+        await setDoc(docRef, itemData);
+      }
+    } catch (error) {
+      console.error('Error setting product data:', error);
+      // Handle the error or rethrow it depending on your use case
+      throw error;
+    }
   }
 
-  uploadFile(input: HTMLInputElement) {
-    if (!input.files) return;
+  async uploadFile(file: any, ID: string) {
+    if (!file) return;
 
-    const files: FileList = input.files;
+    const newName = this.chnageFileName(file.name, ID);
+    const storageRef = ref(this.storage, newName);
 
-    for (let i = 0; i < files.length; i++) {
-      const file = files.item(i);
-      if (file) {
-        const storageRef = ref(this.storage, file.name);
-        uploadBytesResumable(storageRef, file);
-        // get download url
-        const url = getDownloadURL(storageRef);
-      }
+    try {
+      await uploadBytesResumable(storageRef, file);
+
+      const downloadUrl = await getDownloadURL(storageRef);
+
+      return downloadUrl;
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      throw error;
     }
+  }
+
+  chnageFileName(fileName: string, ID: string) {
+    const format = fileName.split('.').pop();
+    const newFileName = ID + '.' + format;
+    return newFileName;
   }
 }

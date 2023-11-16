@@ -39,5 +39,6 @@ export class FavoritesService {
     }
     favorites.push(id);
     localStorage.setItem('favorites', JSON.stringify(favorites));
+    this.updateFavoritesCound();
   }
 }
