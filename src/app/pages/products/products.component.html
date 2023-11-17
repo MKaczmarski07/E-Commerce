@@ -1,6 +1,13 @@
 <div class="flex py-6 md:px-12 px-3 flex-col gap-6">
   <h1 class="text-2xl font-medium">{{ productType }}</h1>
 
+  <div
+    *ngIf="showInfo"
+    class="w-full h-full flex items-center justify-center mt-20"
+  >
+    <span class="font-medium">There's nothing here yet.</span>
+  </div>
+
   <div class="flex gap-6">
     <div class="filters"></div>
     <div class="grid grid-cols-4 gap-6 w-full">

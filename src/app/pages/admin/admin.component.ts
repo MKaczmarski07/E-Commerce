@@ -29,26 +29,10 @@ export class AdminComponent {
       name: new FormControl('', [Validators.required]),
       price: new FormControl('', [Validators.required]),
       shortDes: new FormControl('', [Validators.required]),
-      longDes: new FormControl('', [Validators.required]),
       category: new FormControl('', [Validators.required]),
       for: new FormControl('', [Validators.required]),
       image: new FormControl('', [Validators.required]),
     });
-  }
-
-  addtestItem() {
-    const item: Item = {
-      id: 'test',
-      name: 'test',
-      price: 0,
-      shortDes: 'test',
-      longDes: 'test',
-      category: 'test',
-      for: 'test',
-      sizes: ['test', 'test'],
-      imageUrl: 'test',
-    };
-    this.databaseService.setProductData(item, this.image);
   }
 
   changeFor(event: any) {
@@ -85,14 +69,13 @@ export class AdminComponent {
       return;
     }
     const user = {
+      id: '',
       name: this.form.get('name')?.value,
       price: this.form.get('price')?.value,
-      shortDes: this.form.get('shortDes')?.value,
-      longDes: this.form.get('longDes')?.value,
-      category: this.form.get('category')?.value,
       for: this.form.get('for')?.value,
+      category: this.form.get('category')?.value,
+      shortDes: this.form.get('shortDes')?.value,
       sizes: this.addSizes(),
-      id: '',
       imageUrl: '',
     };
 

@@ -19,9 +19,11 @@ export class MenuComponent implements OnInit, OnDestroy {
   subMenuState: string;
   windowWidth = window.innerWidth;
   isAuthenticated = false;
+  isAdmin = false;
   private userSub?: Subscription;
   private cartItemsSub?: Subscription;
   private favoritesSub?: Subscription;
+  private isAdminSub?: Subscription;
   catrtItemsCount = 0;
   favoritesCount = 0;
 
@@ -48,6 +50,9 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.favoritesCount = this.favoritesService.initFavoritesCound();
     this.favoritesSub = this.favoritesService.favorites$.subscribe(
       (count) => (this.favoritesCount = count)
+    );
+    this.isAdminSub = this.authService.isAdmin$.subscribe(
+      (isAdmin) => (this.isAdmin = isAdmin)
     );
   }
 
@@ -98,5 +103,6 @@ export class MenuComponent implements OnInit, OnDestroy {
     if (this.userSub) this.userSub.unsubscribe();
     if (this.cartItemsSub) this.cartItemsSub.unsubscribe();
     if (this.favoritesSub) this.favoritesSub.unsubscribe();
+    if (this.isAdminSub) this.isAdminSub.unsubscribe();
   }
 }

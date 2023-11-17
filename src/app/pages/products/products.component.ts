@@ -4,6 +4,7 @@ import { Observable, map } from 'rxjs';
 import { Item } from '../../models/item';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadProductService } from '../../services/load-product.service';
+import { filter, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-products',
@@ -11,7 +12,8 @@ import { LoadProductService } from '../../services/load-product.service';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-  items: Observable<Item[]> | undefined;
+  items: Observable<Item[]> | null = null;
+  showInfo = true;
   category = '';
   for = '';
   productType = '';
@@ -40,7 +42,10 @@ export class ProductsComponent implements OnInit {
         items.filter(
           (item) => item.for === this.for && item.category === this.category
         )
-      )
+      ),
+      tap((filteredItems) => {
+        this.showInfo = filteredItems.length === 0 ? true : false;
+      })
     );
   }
 

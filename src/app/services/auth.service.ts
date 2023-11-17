@@ -19,6 +19,8 @@ export interface AuthResponseData {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   user = new BehaviorSubject<User>(null!);
+  private isAdmin = new BehaviorSubject<boolean>(false);
+  isAdmin$ = this.isAdmin.asObservable();
   private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -65,6 +67,7 @@ export class AuthService {
             resData.idToken,
             +resData.expiresIn
           );
+          this.isUserAdmin();
         })
       );
   }
@@ -89,6 +92,7 @@ export class AuthService {
 
     if (loadedUser.token) {
       this.user.next(loadedUser);
+      this.isUserAdmin();
       const expirationDuration =
         new Date(userData._tokenExpirationDate).getTime() -
         new Date().getTime();
@@ -103,6 +107,10 @@ export class AuthService {
       clearTimeout(this.tokenExpirationTimer);
     }
     this.tokenExpirationTimer = null;
+    this.isAdmin.next(false);
+    if (this.router.url === '/admin' && this.isAdmin.value) {
+      this.router.navigate(['/home']);
+    }
   }
 
   autoLogout(expirationDuration: number) {
@@ -122,6 +130,12 @@ export class AuthService {
     this.user.next(user);
     this.autoLogout(expiresIn * 1000);
     localStorage.setItem('userData', JSON.stringify(user));
+  }
+
+  private isUserAdmin() {
+    if (this.user.value.id === 'GUtKwXEDS9cteTlQTON4BNS8sqp2') {
+      this.isAdmin.next(true);
+    }
   }
 
   private handleError(errorRes: HttpErrorResponse) {

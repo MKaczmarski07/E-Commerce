@@ -116,7 +116,7 @@
             </svg>
             {{ catrtItemsCount }}
           </button>
-          <button class="nav-button" routerLink="/admin">
+          <button *ngIf="isAdmin" class="nav-button" routerLink="/admin">
             <svg
               fill="none"
               stroke="currentColor"

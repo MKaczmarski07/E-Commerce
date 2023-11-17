@@ -7,5 +7,4 @@ export interface Item {
   price: number;
   sizes: string[];
   shortDes: string;
-  longDes: string;
 }
