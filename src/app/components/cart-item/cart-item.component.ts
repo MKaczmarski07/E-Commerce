@@ -14,6 +14,7 @@ export class CartItemComponent {
   @Input() size = '';
   @Input() imageUrl = '';
   @Input() quantity = 0;
+  @Input() discountPrice: number | undefined = undefined;
   constructor(private cartService: CartService) {}
 
   onItemDelete() {

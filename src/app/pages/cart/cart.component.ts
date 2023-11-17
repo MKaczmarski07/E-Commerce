@@ -29,7 +29,10 @@ export class CartComponent implements OnInit, OnDestroy {
 
   calculateValues() {
     this.subTotal = this.cartItems.reduce(
-      (acc, item) => acc + item.price * item.quantity,
+      (acc, item) =>
+        item.discountPrice
+          ? acc + item.discountPrice * item.quantity
+          : acc + item.price * item.quantity,
       0
     );
     this.shipping = this.subTotal > 100 ? 0 : 10;

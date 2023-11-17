@@ -136,6 +136,7 @@ export class AuthService {
     if (this.user.value.id === 'GUtKwXEDS9cteTlQTON4BNS8sqp2') {
       this.isAdmin.next(true);
     }
+    // additional security rules are applied directly in the database
   }
 
   private handleError(errorRes: HttpErrorResponse) {

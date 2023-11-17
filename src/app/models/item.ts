@@ -7,4 +7,6 @@ export interface Item {
   price: number;
   sizes: string[];
   shortDes: string;
+  discountPrice?: number;
+  isBestSeller?: boolean;
 }

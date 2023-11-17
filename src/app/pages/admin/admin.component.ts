@@ -16,6 +16,7 @@ import {
 export class AdminComponent {
   form: FormGroup;
   image: any;
+  imageName: string | null = null;
   showError = false;
   forOptions = ['women', 'men', 'kids'];
   categories: string[] = [];
@@ -60,7 +61,9 @@ export class AdminComponent {
   }
 
   handleImage(event: any) {
-    this.image = event.target.files[0];
+    const file = event.target.files[0];
+    this.image = file;
+    this.imageName = file.name;
   }
 
   onSubmit() {

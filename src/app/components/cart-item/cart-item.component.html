@@ -8,9 +8,18 @@
       />
     </div>
     <div class="w-full flex flex-col gap-3">
-      <span class="font-medium sm:hidden"
-        >{{ price | number : "1.2-2" }} €</span
-      >
+      <span *ngIf="!discountPrice" class="font-medium sm:hidden">
+        {{ price | number : "1.2-2" }} €
+      </span>
+      <div *ngIf="discountPrice" class="sm:hidden flex gap-2">
+        <span class="font-medium"
+          >{{ discountPrice | number : "1.2-2" }} €</span
+        >
+        <span class="font-medium text-[#505050] line-through"
+          >{{ price | number : "1.2-2" }} €</span
+        >
+      </div>
+
       <span class="font-medium">{{ name }}</span>
       <span class="text-[#505050]">{{ shortDes }}</span>
       <span class="text-[#505050]">{{ size }}</span>
@@ -54,6 +63,14 @@
     </div>
   </div>
   <div class="w-full sm:flex justify-end hidden">
-    <span class="font-medium">{{ price | number : "1.2-2" }} €</span>
+    <span *ngIf="!discountPrice" class="font-medium"
+      >{{ price | number : "1.2-2" }} €</span
+    >
+    <div *ngIf="discountPrice" class="flex gap-2">
+      <span class="font-medium">{{ discountPrice | number : "1.2-2" }} €</span>
+      <span class="font-medium text-[#505050] line-through"
+        >{{ price | number : "1.2-2" }} €</span
+      >
+    </div>
   </div>
 </div>

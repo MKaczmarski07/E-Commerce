@@ -4,6 +4,7 @@ import { LoadProductService } from 'src/app/services/load-product.service';
 import { Observable } from 'rxjs';
 import { Item } from '../../models/item';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,8 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   shoes: Observable<Item[]> | undefined;
+  bestSellers: Observable<Item[]> | undefined;
+  itemsOnSale: Observable<Item[]> | undefined;
 
   constructor(
     private databaseService: DatabaseService,
@@ -21,6 +24,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.shoes = this.databaseService.getCollection();
+    this.bestSellers = this.databaseService
+      .getCollection()
+      .pipe(map((items) => items.filter((item) => item.isBestSeller === true)));
+    this.itemsOnSale = this.databaseService
+      .getCollection()
+      .pipe(
+        map((items) => items.filter((item) => item.discountPrice !== undefined))
+      );
   }
 
   onProductClick(item: Item) {

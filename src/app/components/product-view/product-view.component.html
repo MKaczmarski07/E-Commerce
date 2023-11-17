@@ -8,8 +8,21 @@
     />
   </div>
   <div class="flex flex-col gap-1">
+    <span *ngIf="isBestSeller" class="text-[#9e3500] font-medium"
+      >Bestseller</span
+    >
     <span class="font-medium">{{ name }}</span>
     <span class="text-[#505050]">{{ shortDes }}</span>
-    <span class="font-medium">{{ price }} €</span>
+    <div class="flex gap-2">
+      <span *ngIf="!discountPrice" class="font-medium">{{ price }} €</span>
+      <span *ngIf="discountPrice" class="font-medium"
+        >{{ discountPrice }} €</span
+      >
+      <span
+        *ngIf="discountPrice"
+        class="font-medium text-[#505050] line-through"
+        >{{ price }} €</span
+      >
+    </div>
   </div>
 </div>

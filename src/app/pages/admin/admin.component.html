@@ -56,11 +56,42 @@
       (input)="handleImage($event)"
       formControlName="image"
       type="file"
+      accept="image/png, image/jpeg, image/jpg, image/webp, image/gif, image/jiff"
       class="form-control-file"
-      id="image"
+      id="imageUpload"
+      hidden
     />
 
-    <button type="submit" class="submit-btn">Add Item</button>
+    <label for="imageUpload" class="upload-btn">
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
+        ></path>
+      </svg>
+      Upload
+    </label>
+
+    <div class="flex flex-col gap-2">
+      <span> Uploaded image: </span>
+      <div class="text-[#707072]">
+        <span *ngIf="imageName">
+          {{ imageName }}
+        </span>
+        <span *ngIf="!imageName"> You don't upload any image yet! </span>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn">Add Product</button>
     <span *ngIf="showError" class="text-[#ff5050] w-full text-center"
       >Please complete all fields!</span
     >

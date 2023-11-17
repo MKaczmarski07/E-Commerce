@@ -37,12 +37,26 @@
 .submit-btn {
   width: 100%;
   padding: 0.8rem 1rem;
+  margin-top: 1rem;
   font-size: 1.1rem;
   border-radius: 10px;
   background-color: #007aff;
   color: white;
   font-weight: 500;
   transition: all 0.2s ease-in-out;
+}
+
+.upload-btn {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1rem;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  background-color: #f2f2f2;
+  cursor: pointer;
+  border: 1px solid #e5e5e5;
 }
 
 .btn-disabled {

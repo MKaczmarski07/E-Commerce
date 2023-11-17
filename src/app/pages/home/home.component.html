@@ -3,27 +3,37 @@
 
   <div class="flex flex-col gap-10 my-10">
     <div class="home-section">
-      <span class="home-section-header">Popular this week</span>
+      <span class="home-section-header">Sale</span>
       <div class="home-section-grid">
         <app-product-view
-          *ngFor="let item of shoes | async"
+          *ngFor="let item of itemsOnSale | async"
           [name]="item.name"
           [price]="item.price"
           [for]="item.for"
           [imageUrl]="item.imageUrl"
           [shortDes]="item.shortDes"
+          [isBestSeller]="item.isBestSeller"
+          [discountPrice]="item.discountPrice"
           (click)="onProductClick(item)"
         ></app-product-view>
       </div>
-      <form></form>
-    </div>
-
-    <div class="home-section">
-      <span class="home-section-header">Sale</span>
     </div>
 
     <div class="home-section">
       <span class="home-section-header">Bestsellers</span>
+      <div class="home-section-grid">
+        <app-product-view
+          *ngFor="let item of bestSellers | async"
+          [name]="item.name"
+          [price]="item.price"
+          [for]="item.for"
+          [imageUrl]="item.imageUrl"
+          [shortDes]="item.shortDes"
+          [isBestSeller]="item.isBestSeller"
+          [discountPrice]="item.discountPrice"
+          (click)="onProductClick(item)"
+        ></app-product-view>
+      </div>
     </div>
   </div>
 </div>
