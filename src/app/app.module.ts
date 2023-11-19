@@ -2,10 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MenuComponent } from './shared/menu/menu.component';
@@ -26,6 +25,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { FavoriteItemComponent } from './components/favorite-item/favorite-item.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { ProductViewSkeletonComponent } from './components/product-view-skeleton/product-view-skeleton.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +43,7 @@ import { AdminComponent } from './pages/admin/admin.component';
     FavoritesComponent,
     FavoriteItemComponent,
     AdminComponent,
+    ProductViewSkeletonComponent,
   ],
   imports: [
     BrowserModule,

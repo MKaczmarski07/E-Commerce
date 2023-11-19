@@ -11,5 +11,14 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.autoLogin();
+    this.setMaxWidth();
+  }
+
+  setMaxWidth() {
+    const el = document.querySelector('.mainContent') as HTMLElement;
+    if (el) {
+      const elWidth = el.getBoundingClientRect().width;
+      el.style.maxWidth = `${elWidth}px`;
+    }
   }
 }

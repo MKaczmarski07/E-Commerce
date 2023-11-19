@@ -8,20 +8,22 @@
     <span class="font-medium">There's nothing here yet.</span>
   </div>
 
-  <div class="flex gap-6">
-    <div class="filters"></div>
-    <div class="grid grid-cols-4 gap-6 w-full">
-      <app-product-view
-        *ngFor="let item of items | async"
-        [name]="item.name"
-        [price]="item.price"
-        [for]="item.for"
-        [imageUrl]="item.imageUrl"
-        [shortDes]="item.shortDes"
-        [isBestSeller]="item.isBestSeller"
-        [discountPrice]="item.discountPrice"
-        (click)="onProductClick(item)"
-      ></app-product-view>
-    </div>
+  <div class="grid grid-cols-4 gap-6 w-full" *ngIf="!isLoaded">
+    <app-product-view-skeleton *ngFor="let item of skeletonItems">
+    </app-product-view-skeleton>
+  </div>
+
+  <div class="grid grid-cols-4 gap-6 w-full">
+    <app-product-view
+      *ngFor="let item of items | async"
+      [name]="item.name"
+      [price]="item.price"
+      [for]="item.for"
+      [imageUrl]="item.imageUrl"
+      [shortDes]="item.shortDes"
+      [isBestSeller]="item.isBestSeller"
+      [discountPrice]="item.discountPrice"
+      (click)="onProductClick(item)"
+    ></app-product-view>
   </div>
 </div>

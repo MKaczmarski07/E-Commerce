@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   shoes: Observable<Item[]> | undefined;
   bestSellers: Observable<Item[]> | undefined;
   itemsOnSale: Observable<Item[]> | undefined;
+  skeletonItems: number[] = [];
 
   constructor(
     private databaseService: DatabaseService,
@@ -23,6 +24,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.initSkeletonItems();
     this.shoes = this.databaseService.getCollection();
     this.bestSellers = this.databaseService
       .getCollection()
@@ -36,5 +38,9 @@ export class HomeComponent implements OnInit {
 
   onProductClick(item: Item) {
     this.loadProductService.loadProduct(item);
+  }
+
+  initSkeletonItems() {
+    this.skeletonItems = Array(3).fill(0);
   }
 }

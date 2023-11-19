@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../../services/database.service';
 import { Observable, map } from 'rxjs';
 import { Item } from '../../models/item';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { LoadProductService } from '../../services/load-product.service';
-import { filter, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-products',
@@ -13,17 +13,18 @@ import { filter, tap } from 'rxjs/operators';
 })
 export class ProductsComponent implements OnInit {
   items: Observable<Item[]> | null = null;
-  showInfo = true;
+  showInfo = false;
+  isLoaded = false;
   category = '';
   for = '';
   productType = '';
   itemsID = '';
+  skeletonItems: number[] = [];
 
   constructor(
     private databaseService: DatabaseService,
     private loadProductService: LoadProductService,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -31,6 +32,7 @@ export class ProductsComponent implements OnInit {
       this.loadData();
       this.formatProductType();
     });
+    this.initSkeletonItems();
   }
 
   loadData() {
@@ -44,6 +46,7 @@ export class ProductsComponent implements OnInit {
         )
       ),
       tap((filteredItems) => {
+        this.isLoaded = true;
         this.showInfo = filteredItems.length === 0 ? true : false;
       })
     );
@@ -67,5 +70,9 @@ export class ProductsComponent implements OnInit {
 
   onProductClick(item: Item) {
     this.loadProductService.loadProduct(item);
+  }
+
+  initSkeletonItems() {
+    this.skeletonItems = Array(8).fill(0);
   }
 }
