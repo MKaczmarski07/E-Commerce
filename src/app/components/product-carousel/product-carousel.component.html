@@ -1,0 +1,37 @@
+<div class="navigation-wrapper aspect-[3.5/1]">
+  <div #sliderRef>
+    <div *ngIf="!isLoaded" class="keen-slider keen-slider--vertical">
+      <app-product-view-skeleton
+        class="keen-slider__slide"
+        *ngFor="let product of skeletonItems"
+      ></app-product-view-skeleton>
+    </div>
+    <div *ngIf="isLoaded" class="keen-slider keen-slider--vertical">
+      <app-product-view
+        class="keen-slider__slide"
+        *ngFor="let product of fetchedProducts"
+        [name]="product.name"
+        [price]="product.price"
+        [for]="product.for"
+        [imageUrl]="product.imageUrl"
+        [shortDes]="product.shortDes"
+        [isBestSeller]="product.isBestSeller"
+        [discountPrice]="product.discountPrice"
+        (click)="onProductClick(product)"
+      ></app-product-view>
+    </div>
+  </div>
+  <button class="arrow arrow--left" (click)="slider!.prev()">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path
+        d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"
+      />
+    </svg>
+  </button>
+
+  <button class="arrow arrow--right" (click)="slider!.next()">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
+    </svg>
+  </button>
+</div>

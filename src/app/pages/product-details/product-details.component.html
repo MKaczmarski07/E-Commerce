@@ -1,4 +1,8 @@
-<div class="w-full mx-auto max-w-[70rem] gap-16 flex lg:flex-row flex-col p-6">
+<app-product-detail-skeleton *ngIf="!isLoaded"></app-product-detail-skeleton>
+<div
+  *ngIf="isLoaded"
+  class="w-full mx-auto max-w-[70rem] gap-16 flex lg:flex-row flex-col p-6"
+>
   <div class="lg:w-[60%] w-full flex flex-col gap-6">
     <img
       [src]="item?.imageUrl || '../../../assets/images/lazy-image.svg'"

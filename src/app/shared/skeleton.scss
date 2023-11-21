@@ -1,0 +1,44 @@
+.skeleton-text {
+  height: 1rem;
+  width: 100%;
+  border-radius: 5px;
+  background-color: #eff1f6;
+  box-sizing: border-box;
+  margin: 0.25rem 0;
+  animation: pulse 1s infinite;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  border-radius: 5px;
+  animation: pulse 1s infinite;
+}
+
+.skeleton-button {
+  width: 100%;
+  background-color: #eff1f6;
+  box-sizing: border-box;
+  animation: pulse 1s infinite;
+}
+
+.skeleton-header {
+  height: 2.25rem;
+}
+
+.skeleton-subHeader {
+  height: 1.75rem;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #eff1f6;
+  }
+  50% {
+    background-color: #f3f5f8;
+  }
+  100% {
+    background-color: #eff1f6;
+  }
+}

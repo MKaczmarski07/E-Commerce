@@ -1,0 +1,17 @@
+.skeleton-text {
+  height: 1rem;
+  width: 100%;
+  border-radius: 5px;
+  background-color: #eff1f6;
+  box-sizing: border-box;
+  margin: 0.25rem 0;
+  animation: pulse 1s infinite;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  border-radius: 5px;
+  animation: pulse 1s infinite;
+}

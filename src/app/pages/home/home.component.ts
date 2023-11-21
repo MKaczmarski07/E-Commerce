@@ -4,7 +4,7 @@ import { LoadProductService } from 'src/app/services/load-product.service';
 import { Observable } from 'rxjs';
 import { Item } from '../../models/item';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',

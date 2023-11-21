@@ -1,9 +1,11 @@
 <div class="navigation-wrapper">
-  <div class="keen-slider keen-slider--vertical rounded-[20px]" #sliderRef>
-    <div class="keen-slider__slide number-slide1">1</div>
-    <div class="keen-slider__slide number-slide2">2</div>
-    <div class="keen-slider__slide number-slide3">3</div>
-    <div class="keen-slider__slide number-slide4">4</div>
+  <div
+    class="keen-slider keen-slider--vertical rounded-[20px] aspect-[3.5/1]"
+    #sliderRef
+  >
+    <div *ngFor="let slideSrc of slides" class="keen-slider__slide">
+      <img [src]="slideSrc" />
+    </div>
   </div>
   <button class="arrow arrow--left" (click)="slider!.prev()">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

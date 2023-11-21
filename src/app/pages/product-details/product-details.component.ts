@@ -20,6 +20,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   id = '';
   selectedSize: string | null = null;
   isAuthenticated = false;
+  isLoaded = false;
   private userSub?: Subscription;
 
   constructor(
@@ -44,6 +45,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     this.databaseService.getItem(this.id).then((item) => {
       if (item) {
         this.item = item;
+        this.isLoaded = true;
       } else {
         // prevent access to non-existing item page
         this.router.navigate(['/']);

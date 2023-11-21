@@ -1,44 +1,49 @@
 import {
   Component,
-  ElementRef,
   ViewChild,
-  AfterViewInit,
+  ElementRef,
   OnDestroy,
+  AfterViewInit,
+  Input,
+  OnChanges,
 } from '@angular/core';
 import KeenSlider, { KeenSliderInstance } from 'keen-slider';
+import { Item } from 'src/app/models/item';
+import { LoadProductService } from 'src/app/services/load-product.service';
 
 @Component({
-  selector: 'app-slider',
-  templateUrl: './slider.component.html',
+  selector: 'app-product-carousel',
+  templateUrl: './product-carousel.component.html',
   styleUrls: [
-    '../../../../node_modules/keen-slider/keen-slider.min.css',
-    './slider.component.scss',
+    './product-carousel.component.scss',
     '../../shared/keen-slider.scss',
+    '../../../../node_modules/keen-slider/keen-slider.min.css',
   ],
 })
-export class SliderComponent implements AfterViewInit, OnDestroy {
+export class ProductCarouselComponent
+  implements AfterViewInit, OnDestroy, OnChanges
+{
   @ViewChild('sliderRef') sliderRef!: ElementRef<HTMLElement>;
 
   currentSlide: number = 0;
-  sliderHeaders: string[] = [
-    'Promocja na karpia w Lidlu',
-    'Oszczędź nawet 55%',
-    'Październikowe rabaty',
-    'Zobacz nasze nowości',
-  ];
-  slides: string[] = [
-    '../../../assets/images/lazy-image.svg',
-    '../../../assets/images/lazy-image.svg',
-    '../../../assets/images/lazy-image.svg',
-    '../../../assets/images/lazy-image.svg',
-  ];
-  dotHelper: number[] = [];
   slider: KeenSliderInstance | undefined;
+  isLoaded = false;
 
-  constructor() {
-    // prevent slider from loading more than 4 slides
-    this.sliderHeaders = this.sliderHeaders.slice(0, 4);
-    this.slides = this.slides.slice(0, 4);
+  skeletonItems = [1, 2, 3, 4, 5, 6];
+  @Input() fetchedProducts: Item[] | null = null;
+
+  constructor(private loadProductService: LoadProductService) {}
+
+  ngOnChanges() {
+    if (this.fetchedProducts) {
+      this.isLoaded = true;
+
+      setTimeout(() => {
+        {
+          this.slider?.update(undefined, 0);
+        }
+      }, 0.1);
+    }
   }
 
   ngAfterViewInit() {
@@ -47,6 +52,7 @@ export class SliderComponent implements AfterViewInit, OnDestroy {
       {
         loop: true,
         slides: {
+          perView: 4.25,
           spacing: 15,
         },
         initial: this.currentSlide,
@@ -89,5 +95,9 @@ export class SliderComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     if (this.slider) this.slider.destroy();
+  }
+
+  onProductClick(item: Item) {
+    this.loadProductService.loadProduct(item);
   }
 }

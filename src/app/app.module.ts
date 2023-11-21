@@ -26,6 +26,8 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { FavoriteItemComponent } from './components/favorite-item/favorite-item.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { ProductViewSkeletonComponent } from './components/product-view-skeleton/product-view-skeleton.component';
+import { ProductDetailSkeletonComponent } from './components/product-detail-skeleton/product-detail-skeleton.component';
+import { ProductCarouselComponent } from './components/product-carousel/product-carousel.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { ProductViewSkeletonComponent } from './components/product-view-skeleton
     FavoriteItemComponent,
     AdminComponent,
     ProductViewSkeletonComponent,
+    ProductDetailSkeletonComponent,
+    ProductCarouselComponent,
   ],
   imports: [
     BrowserModule,
