@@ -1,14 +1,25 @@
 # E-Commerce platform
 
-## Official Website 🌐
+<!--  ## Official Website 🌐 -->
+
+## Key Features
+
+- Token-based user authentication
+- Fetching and displaying product data stored in the cloud database
+- Adding new products to the store using the administration panel
+- Adding items to cart
+- Adding items to favorites
+- Simulation of the product ordering process
 
 ## Technology Stack
 
 [Angular 🔗](https://angular.io)<br>
 [TypeScript 🔗](https://typescriptlang.org)<br>
-[Sass 🔗](https://sass-lang.com)<br>
+[RxJS 🔗](https://rxjs.dev)<br>
 [Firebase Cloud Services 🔗](https://firebase.google.com)<br>
 [Angular Fire 🔗](https://github.com/angular/angularfire)<br>
+[Sass 🔗](https://sass-lang.com)<br>
+[TailwindCSS 🔗](https://tailwindcss.com)<br>
 
 ## Installation Guide ⚙️
 

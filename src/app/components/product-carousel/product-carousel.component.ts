@@ -16,7 +16,6 @@ import { LoadProductService } from 'src/app/services/load-product.service';
   templateUrl: './product-carousel.component.html',
   styleUrls: [
     './product-carousel.component.scss',
-    '../../shared/keen-slider.scss',
     '../../../../node_modules/keen-slider/keen-slider.min.css',
   ],
 })
@@ -28,6 +27,7 @@ export class ProductCarouselComponent
   currentSlide: number = 0;
   slider: KeenSliderInstance | undefined;
   isLoaded = false;
+  @Input() header = '';
 
   skeletonItems = [1, 2, 3, 4, 5, 6];
   @Input() fetchedProducts: Item[] | null = null;
@@ -51,8 +51,16 @@ export class ProductCarouselComponent
       this.sliderRef.nativeElement,
       {
         loop: true,
+        breakpoints: {
+          '(min-width: 500px)': {
+            slides: { perView: 2.25, spacing: 15 },
+          },
+          '(min-width: 1023px)': {
+            slides: { perView: 4.25, spacing: 15 },
+          },
+        },
         slides: {
-          perView: 4.25,
+          perView: 1.25,
           spacing: 15,
         },
         initial: this.currentSlide,

@@ -3,17 +3,17 @@
 
   <div class="flex flex-col gap-10 my-10">
     <div class="home-section">
-      <span class="home-section-header">Sale</span>
       <app-product-carousel
         [fetchedProducts]="itemsOnSale | async"
+        [header]="'Sale'"
       ></app-product-carousel>
     </div>
 
     <div class="flex flex-col gap-10 my-10">
       <div class="home-section">
-        <span class="home-section-header">Bestsellers</span>
         <app-product-carousel
           [fetchedProducts]="bestSellers | async"
+          [header]="'Bestsellers'"
         ></app-product-carousel>
       </div>
     </div>

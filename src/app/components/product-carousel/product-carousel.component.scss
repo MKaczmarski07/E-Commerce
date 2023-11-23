@@ -1,0 +1,20 @@
+.arrow {
+  background-color: #f0f0f1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #e0e0e1;
+  }
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    fill: #333;
+  }
+}

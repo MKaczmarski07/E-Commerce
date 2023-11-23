@@ -4,7 +4,7 @@ import { LoadProductService } from 'src/app/services/load-product.service';
 import { Observable } from 'rxjs';
 import { Item } from '../../models/item';
 import { Router } from '@angular/router';
-import { map, tap } from 'rxjs/operators';
+import { map, takeWhile, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -26,14 +26,15 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.initSkeletonItems();
     this.shoes = this.databaseService.getCollection();
-    this.bestSellers = this.databaseService
-      .getCollection()
-      .pipe(map((items) => items.filter((item) => item.isBestSeller === true)));
-    this.itemsOnSale = this.databaseService
-      .getCollection()
-      .pipe(
-        map((items) => items.filter((item) => item.discountPrice !== undefined))
-      );
+    this.bestSellers = this.databaseService.getCollection().pipe(
+      map((items) => items.filter((item) => item.isBestSeller === true))
+      // takeWhile((items) => items.length > 1 && items.length < 6)
+    );
+    this.itemsOnSale = this.databaseService.getCollection().pipe(
+      map((items) => items.filter((item) => item.discountPrice !== undefined)),
+      takeWhile((items) => items.length > 1 && items.length < 6)
+      // propably take(6) also works but there have to be more items
+    );
   }
 
   onProductClick(item: Item) {

@@ -13,7 +13,6 @@ import KeenSlider, { KeenSliderInstance } from 'keen-slider';
   styleUrls: [
     '../../../../node_modules/keen-slider/keen-slider.min.css',
     './slider.component.scss',
-    '../../shared/keen-slider.scss',
   ],
 })
 export class SliderComponent implements AfterViewInit, OnDestroy {

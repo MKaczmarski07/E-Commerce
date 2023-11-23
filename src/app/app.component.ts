@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -11,14 +11,5 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.autoLogin();
-    this.setMaxWidth();
-  }
-
-  setMaxWidth() {
-    const el = document.querySelector('.mainContent') as HTMLElement;
-    if (el) {
-      const elWidth = el.getBoundingClientRect().width;
-      el.style.maxWidth = `${elWidth}px`;
-    }
   }
 }
