@@ -27,6 +27,7 @@ export class PaymentMethodPopupComponent {
     this.paymentMethod = method;
     localStorage.setItem('paymentMethod', this.paymentMethod);
     this.methodChanged.emit(true);
+    this.closePopup.emit(true);
   }
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(

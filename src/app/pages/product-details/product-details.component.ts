@@ -22,6 +22,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
   isLoaded = false;
   private userSub?: Subscription;
+  showError = false;
 
   constructor(
     private databaseService: DatabaseService,
@@ -55,6 +56,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
 
   onSelectSize(size: string) {
     this.selectedSize = size;
+    this.showError = false;
   }
 
   onAddToCart() {
@@ -65,6 +67,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
         quantity: 1,
       };
       this.cartService.addToCart(cartItem);
+    } else {
+      this.showError = true;
     }
   }
 

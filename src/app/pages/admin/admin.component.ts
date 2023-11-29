@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Item } from 'src/app/models/item';
 import { DatabaseService } from 'src/app/services/database.service';
 import {
   FormControl,
