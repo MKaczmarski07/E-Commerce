@@ -4,7 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { FavoritesService } from 'src/app/services/favorites.service';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -24,6 +24,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   private cartItemsSub?: Subscription;
   private favoritesSub?: Subscription;
   private isAdminSub?: Subscription;
+  private routerSubscription: Subscription;
   catrtItemsCount = 0;
   favoritesCount = 0;
 
@@ -37,6 +38,12 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.subMenuState = this.menuState;
     this.subMenuType = this.windowWidth >= 1024 ? 'Women' : null;
     this.previousSubMenu = this.subMenuType;
+    this.routerSubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd && this.windowWidth < 1024) {
+        this.subMenuState = 'hidden';
+        this.menuState = 'hidden';
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -90,6 +97,11 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.toggleMobileSubMenu();
   }
 
+  closeMenu() {
+    this.toggleMenu();
+    this.toggleMobileSubMenu();
+  }
+
   @HostListener('window:scroll', ['$event'])
   onScroll(event: any) {
     if (this.menuState === 'visible') {
@@ -104,5 +116,6 @@ export class MenuComponent implements OnInit, OnDestroy {
     if (this.cartItemsSub) this.cartItemsSub.unsubscribe();
     if (this.favoritesSub) this.favoritesSub.unsubscribe();
     if (this.isAdminSub) this.isAdminSub.unsubscribe();
+    if (this.routerSubscription) this.routerSubscription.unsubscribe();
   }
 }

@@ -45,7 +45,16 @@ export class SliderComponent implements AfterViewInit, OnDestroy {
       this.sliderRef.nativeElement,
       {
         loop: true,
+        breakpoints: {
+          '(min-width: 768px)': {
+            slides: { perView: 1, spacing: 15 },
+          },
+          // '(min-width: 1023px)': {
+          //   slides: { perView: 4.25, spacing: 15 },
+          // },
+        },
         slides: {
+          perView: 1.25,
           spacing: 15,
         },
         initial: this.currentSlide,
