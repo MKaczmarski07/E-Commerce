@@ -28,6 +28,8 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { ProductViewSkeletonComponent } from './components/product-view-skeleton/product-view-skeleton.component';
 import { ProductDetailSkeletonComponent } from './components/product-detail-skeleton/product-detail-skeleton.component';
 import { ProductCarouselComponent } from './components/product-carousel/product-carousel.component';
+import { PaymentMethodPopupComponent } from './components/payment-method-button/payment-method-popup/payment-method-popup.component';
+import { PaymentMethodButtonComponent } from './components/payment-method-button/payment-method-button.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { ProductCarouselComponent } from './components/product-carousel/product-
     ProductViewSkeletonComponent,
     ProductDetailSkeletonComponent,
     ProductCarouselComponent,
+    PaymentMethodPopupComponent,
+    PaymentMethodButtonComponent,
   ],
   imports: [
     BrowserModule,
