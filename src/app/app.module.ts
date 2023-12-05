@@ -30,6 +30,8 @@ import { ProductDetailSkeletonComponent } from './components/product-detail-skel
 import { ProductCarouselComponent } from './components/product-carousel/product-carousel.component';
 import { PaymentMethodPopupComponent } from './components/payment-method-button/payment-method-popup/payment-method-popup.component';
 import { PaymentMethodButtonComponent } from './components/payment-method-button/payment-method-button.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { CheckoutProgressBarComponent } from './components/checkout-progress-bar/checkout-progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { PaymentMethodButtonComponent } from './components/payment-method-button
     ProductCarouselComponent,
     PaymentMethodPopupComponent,
     PaymentMethodButtonComponent,
+    CheckoutComponent,
+    CheckoutProgressBarComponent,
   ],
   imports: [
     BrowserModule,

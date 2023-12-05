@@ -1,0 +1,70 @@
+.step-wrapper {
+  display: flex;
+  gap: 0.75rem;
+  flex-direction: column-reverse;
+  z-index: 2;
+  position: relative;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+    background-color: white;
+  }
+
+  .step-element {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+
+    .step-circle {
+      display: flex;
+      background-color: black;
+      border-radius: 50%;
+      width: 1.8rem;
+      height: 1.8rem;
+      justify-content: center;
+      align-items: center;
+      color: white;
+
+      svg {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+  }
+
+  .line {
+    width: 65%;
+    border: 1px solid black;
+    position: absolute;
+    top: 0.8rem;
+    left: 2.5rem;
+
+    @media (min-width: 600px) {
+      width: 80%;
+    }
+
+    @media (min-width: 768px) {
+      position: static;
+      width: 100%;
+    }
+  }
+}
+
+.greyed {
+  color: #9999b1;
+
+  .step-element {
+    .step-circle {
+      background-color: #e1e1e1;
+    }
+  }
+
+  hr {
+    border: solid #e1e1e1 1px !important;
+  }
+}

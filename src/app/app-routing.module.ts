@@ -11,6 +11,7 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent,
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
   },
   {
     path: 'favorites',

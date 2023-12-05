@@ -1,0 +1,74 @@
+<div class="grid grid-cols-3 gap-3 md:text-lg text-sm font-medium items-center">
+  <div class="step-wrapper">
+    <div class="step-element">
+      <div class="step-circle">
+        <svg
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4.5 12.75l6 6 9-13.5"
+          ></path>
+        </svg>
+      </div>
+      <span>Cart</span>
+    </div>
+    <hr class="line" />
+  </div>
+
+  <div class="step-wrapper" [ngClass]="{ greyed: !secondStepPassed }">
+    <div class="step-element">
+      <div class="step-circle">
+        <svg
+          *ngIf="secondStepPassed"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4.5 12.75l6 6 9-13.5"
+          ></path>
+        </svg>
+        <span *ngIf="!secondStepPassed">2</span>
+      </div>
+      <span>Your&nbsp;Data</span>
+    </div>
+    <hr class="line" />
+  </div>
+
+  <div class="step-wrapper" [ngClass]="{ greyed: !thirdStepPassed }">
+    <div class="step-element">
+      <div class="step-circle">
+        <svg
+          *ngIf="thirdStepPassed"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4.5 12.75l6 6 9-13.5"
+          ></path>
+        </svg>
+        <span *ngIf="!thirdStepPassed">3</span>
+      </div>
+      <span>Summary</span>
+    </div>
+    <hr class="line" />
+  </div>
+</div>
