@@ -32,6 +32,7 @@ import { PaymentMethodPopupComponent } from './components/payment-method-button/
 import { PaymentMethodButtonComponent } from './components/payment-method-button/payment-method-button.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { CheckoutProgressBarComponent } from './components/checkout-progress-bar/checkout-progress-bar.component';
+import { SummaryItemComponent } from './components/summary-item/summary-item.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { CheckoutProgressBarComponent } from './components/checkout-progress-bar
     PaymentMethodButtonComponent,
     CheckoutComponent,
     CheckoutProgressBarComponent,
+    SummaryItemComponent,
   ],
   imports: [
     BrowserModule,

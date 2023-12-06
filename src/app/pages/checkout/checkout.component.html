@@ -1,6 +1,7 @@
 <div class="w-full mx-auto max-w-[70rem] gap-9 p-6">
   <app-checkout-progress-bar
     [secondStepPassed]="secondStepPassed"
+    [thirdStepPassed]="thirdStepPassed"
     class="w-full"
   ></app-checkout-progress-bar>
   <div *ngIf="!secondStepPassed" class="flex flex-col gap-6 mt-6">
@@ -208,5 +209,74 @@
         </button>
       </div>
     </form>
+  </div>
+
+  <div
+    *ngIf="secondStepPassed && !thirdStepPassed"
+    class="flex flex-col gap-6 mt-6"
+  >
+    <h1 class="text-3xl font-medium">Shopping Summary</h1>
+    <app-summary-item
+      *ngFor="let item of cartItems"
+      [id]="item.id"
+      [name]="item.name"
+      [price]="item.price"
+      [shortDes]="item.shortDes"
+      [size]="item.size"
+      [imageUrl]="item.imageUrl"
+      [discountPrice]="item.discountPrice"
+      [quantity]="item.quantity"
+    ></app-summary-item>
+    <div class="grid lg:grid-cols-3 grid-cols-1 gap-6 w-full">
+      <div class="data-info-container">
+        <span class="data-info-header">Personal data</span>
+        <div class="flex gap-2">
+          <span>{{ deliveryData.name }}</span>
+          <span>{{ deliveryData.surname }}</span>
+        </div>
+        <span>{{ deliveryData.email }}</span>
+        <span>{{ deliveryData.phone }}</span>
+      </div>
+      <div class="data-info-container">
+        <span class="data-info-header">Delivery adress</span>
+        <span>{{ deliveryData.country }}</span>
+        <span>{{ deliveryData.adress }}</span>
+        <div class="flex">
+          <span>{{ deliveryData.zipCode }},&nbsp;</span>
+          <span>{{ deliveryData.city }}</span>
+        </div>
+      </div>
+      <div class="data-info-container items-start">
+        <span class="data-info-header">Payment method</span>
+        <span>Visa</span>
+        <button
+          class="py-2 px-5 border-2 border-[#007aff] text-[#007aff] rounded-[5px] font-medium"
+        >
+          CHANGE
+        </button>
+      </div>
+      <div></div>
+      <div></div>
+      <div class="flex flex-col gap-3">
+        <div class="flex justify-between">
+          <span>Shipping</span>
+          <span>{{ shipping | number : "1.2-2" }} €</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Total</span>
+          <span>{{ totalPrice | number : "1.2-2" }} €</span>
+        </div>
+        <button
+          (click)="onConfirm()"
+          class="bg-black text-white px-6 py-3 rounded-md"
+        >
+          Order and pay
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="thirdStepPassed" class="w-full h-full flex justify-center mt-32">
+    <span class="text-xl font-medium"> Thank you for your order! </span>
   </div>
 </div>

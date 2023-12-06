@@ -4,6 +4,13 @@
   gap: 0.75rem;
   width: 100%;
   position: relative;
+
+  .form-input {
+    border: 1px solid #1f1f1f;
+    border-radius: 5px;
+    padding: 0.75rem;
+    outline: none;
+  }
 }
 
 .elements-group {
@@ -16,12 +23,6 @@
     flex-direction: row;
     gap: 0.75rem;
   }
-}
-
-.form-input {
-  border: 1px solid #1f1f1f;
-  border-radius: 5px;
-  padding: 0.75rem;
 }
 
 .error-message {
@@ -39,4 +40,19 @@
 .button-invalid {
   opacity: 50%;
   cursor: not-allowed;
+}
+
+.data-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  border: 2px solid #e5e5e5;
+  border-radius: 5px;
+  padding: 0.75rem;
+
+  .data-info-header {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
 }

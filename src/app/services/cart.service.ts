@@ -59,6 +59,7 @@ export class CartService {
     cartItems.push(cartItem);
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
     this.updateCartItemsCount();
+    this.calculateTotalPrice();
   }
 
   removeFromCart(id: string, size: string) {
@@ -68,12 +69,31 @@ export class CartService {
     );
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
     this.updateCartItemsCount();
+    this.calculateTotalPrice();
   }
 
-  checkout() {
-    // simulate checkout process
+  clearCart() {
     localStorage.removeItem('cartItems');
     this.updateCartItemsCount();
-    alert('Thank you for your purchase!');
+  }
+
+  calculateTotalPrice() {
+    const cartItems = this.getCartItems();
+    const totalPrice = cartItems.reduce(
+      (acc, item) =>
+        item.discountPrice
+          ? acc + item.discountPrice * item.quantity
+          : acc + item.price * item.quantity,
+      0
+    );
+    this.saveTotalPrice(totalPrice);
+  }
+
+  saveTotalPrice(totalPrice: number) {
+    localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
+  }
+
+  getTotalPrice() {
+    return JSON.parse(localStorage.getItem('totalPrice') || '{}');
   }
 }

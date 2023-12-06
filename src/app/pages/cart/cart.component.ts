@@ -40,6 +40,10 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   onCheckout() {
+    if (this.cartItems.length === 0) {
+      return;
+    }
+    this.cartService.saveTotalPrice(this.total);
     this.router.navigate(['/checkout']);
   }
 

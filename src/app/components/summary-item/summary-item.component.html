@@ -1,0 +1,40 @@
+<div class="w-full flex justify-between border-b-[1.8px] border-[#e5e5e5] py-6">
+  <div class="w-full flex sm:flex-row flex-col gap-6 sm:min-w-[25rem]">
+    <div class="aspect-square md:h-[10rem] md:w-[10rem] w-full">
+      <img
+        [src]="imageUrl || '../../../assets/images/lazy-image.svg'"
+        alt="product-photo"
+        class="rounded-[5px] h-full w-full object-cover"
+      />
+    </div>
+    <div class="w-full flex flex-col gap-3">
+      <span *ngIf="!discountPrice" class="font-medium sm:hidden">
+        {{ price | number : "1.2-2" }} €
+      </span>
+      <div *ngIf="discountPrice" class="sm:hidden flex gap-2">
+        <span class="font-medium"
+          >{{ discountPrice | number : "1.2-2" }} €</span
+        >
+        <span class="font-medium text-[#505050] line-through"
+          >{{ price | number : "1.2-2" }} €</span
+        >
+      </div>
+
+      <span class="font-medium cart-text">{{ name }}</span>
+      <span class="text-[#505050] cart-text">{{ shortDes }}</span>
+      <span class="text-[#505050] cart-text">{{ size }}</span>
+      <span class="text-[#505050] cart-text">Quantity: {{ quantity }}</span>
+    </div>
+  </div>
+  <div class="w-full sm:flex justify-end hidden">
+    <span *ngIf="!discountPrice" class="font-medium"
+      >{{ price | number : "1.2-2" }} €</span
+    >
+    <div *ngIf="discountPrice" class="flex gap-2">
+      <span class="font-medium">{{ discountPrice | number : "1.2-2" }} €</span>
+      <span class="font-medium text-[#505050] line-through"
+        >{{ price | number : "1.2-2" }} €</span
+      >
+    </div>
+  </div>
+</div>
