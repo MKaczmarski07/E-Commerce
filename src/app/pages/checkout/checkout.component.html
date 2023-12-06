@@ -1,11 +1,212 @@
-<div
-  class="w-full mx-auto max-w-[70rem] gap-9 flex lg:flex-row flex-col-reverse p-6"
->
-  <app-checkout-progress-bar class="w-full"></app-checkout-progress-bar>
-  <!-- <div class="lg:w-[70%] w-full flex flex-col gap-6">
-    <h1 class="text-3xl font-medium">Checkout</h1>
+<div class="w-full mx-auto max-w-[70rem] gap-9 p-6">
+  <app-checkout-progress-bar
+    [secondStepPassed]="secondStepPassed"
+    class="w-full"
+  ></app-checkout-progress-bar>
+  <div *ngIf="!secondStepPassed" class="flex flex-col gap-6 mt-6">
+    <h1 class="text-3xl font-medium">Delivery address</h1>
+    <form [formGroup]="deliveryForm" (submit)="onSubmit()">
+      <div class="flex flex-col gap-6">
+        <div class="elements-group">
+          <div class="form-element">
+            <label for="name">Name</label>
+            <input
+              formControlName="name"
+              type="text"
+              id="name"
+              name="name"
+              class="form-input"
+              [ngClass]="{
+                'error-border':
+                  deliveryForm.get('name')?.touched &&
+                  !deliveryForm.get('name')?.dirty
+              }"
+            />
+            <span
+              *ngIf="
+                deliveryForm.get('name')?.touched &&
+                !deliveryForm.get('name')?.dirty
+              "
+              class="error-message"
+              >This field cannot be empty.</span
+            >
+          </div>
+          <div class="form-element">
+            <label for="name">Surname</label>
+            <input
+              formControlName="surname"
+              type="text"
+              id="surname"
+              name="surname"
+              class="form-input"
+              [ngClass]="{
+                'error-border':
+                  deliveryForm.get('surname')?.touched &&
+                  !deliveryForm.get('surname')?.dirty
+              }"
+            />
+            <span
+              *ngIf="
+                deliveryForm.get('surname')?.touched &&
+                !deliveryForm.get('surname')?.dirty
+              "
+              class="error-message"
+              >This field cannot be empty.</span
+            >
+          </div>
+        </div>
+        <div class="form-element">
+          <label for="street">Adress</label>
+          <input
+            formControlName="adress"
+            type="text"
+            id="street"
+            name="street"
+            class="form-input"
+            [ngClass]="{
+              'error-border':
+                deliveryForm.get('adress')?.touched &&
+                !deliveryForm.get('adress')?.dirty
+            }"
+          />
+          <span
+            *ngIf="
+              deliveryForm.get('adress')?.touched &&
+              !deliveryForm.get('adress')?.dirty
+            "
+            class="error-message"
+            >This field cannot be empty.</span
+          >
+        </div>
+        <div class="elements-group">
+          <div class="form-element">
+            <label for="city">City</label>
+            <input
+              formControlName="city"
+              type="text"
+              id="city"
+              name="city"
+              class="form-input"
+              [ngClass]="{
+                'error-border':
+                  deliveryForm.get('city')?.touched &&
+                  !deliveryForm.get('city')?.dirty
+              }"
+            />
+            <span
+              *ngIf="
+                deliveryForm.get('city')?.touched &&
+                !deliveryForm.get('city')?.dirty
+              "
+              class="error-message"
+              >This field cannot be empty.</span
+            >
+          </div>
+          <div class="form-element">
+            <label for="zip">ZIP code</label>
+            <input
+              formControlName="zipCode"
+              type="text"
+              id="zip"
+              name="zip"
+              class="form-input"
+              [ngClass]="{
+                'error-border':
+                  deliveryForm.get('zipCode')?.touched &&
+                  !deliveryForm.get('zipCode')?.dirty
+              }"
+            />
+            <span
+              *ngIf="
+                deliveryForm.get('zipCode')?.touched &&
+                !deliveryForm.get('zipCode')?.dirty
+              "
+              class="error-message"
+              >This field cannot be empty.</span
+            >
+          </div>
+          <div class="form-element">
+            <label for="country">Country</label>
+            <input
+              formControlName="country"
+              type="text"
+              id="country"
+              name="country"
+              class="form-input"
+              [ngClass]="{
+                'error-border':
+                  deliveryForm.get('country')?.touched &&
+                  !deliveryForm.get('country')?.dirty
+              }"
+            />
+            <span
+              *ngIf="
+                deliveryForm.get('country')?.touched &&
+                !deliveryForm.get('country')?.dirty
+              "
+              class="error-message"
+              >This field cannot be empty.</span
+            >
+          </div>
+        </div>
+        <div class="elements-group">
+          <div class="form-element">
+            <label for="email">E-mail</label>
+            <input
+              formControlName="email"
+              type="text"
+              id="email"
+              name="email"
+              class="form-input"
+              [ngClass]="{
+                'error-border':
+                  deliveryForm.get('email')?.touched &&
+                  !deliveryForm.get('email')?.valid
+              }"
+            />
+            <span
+              *ngIf="
+                deliveryForm.get('email')?.touched &&
+                !deliveryForm.get('email')?.valid
+              "
+              class="error-message"
+              >Please enter a valid e-mail address</span
+            >
+          </div>
+          <div class="form-element">
+            <label for="phone">Phone</label>
+            <input
+              formControlName="phone"
+              type="text"
+              id="phone"
+              name="phone"
+              class="form-input"
+              [ngClass]="{
+                'error-border':
+                  deliveryForm.get('phone')?.touched &&
+                  !deliveryForm.get('phone')?.valid
+              }"
+            />
+            <span
+              *ngIf="
+                deliveryForm.get('phone')?.touched &&
+                !deliveryForm.get('phone')?.valid
+              "
+              class="error-message"
+              >Please provide a valid phone number</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-end mt-6">
+        <button
+          type="submit"
+          class="bg-black text-white px-6 py-3 rounded-md"
+          [ngClass]="{ 'button-invalid': !deliveryForm.valid }"
+        >
+          Continue
+        </button>
+      </div>
+    </form>
   </div>
-  <div class="lg:w-[30%] min-w-[15rem] w-full flex flex-col gap-6">
-    <span class="text-3xl font-medium">Summary</span>
-  </div> -->
 </div>
