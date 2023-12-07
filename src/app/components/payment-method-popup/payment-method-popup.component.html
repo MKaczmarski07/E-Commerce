@@ -1,6 +1,6 @@
 <div
-  class="absolute top-0 left-0 w-full h-screen z-20 flex justify-center items-center overlay"
-  *ngIf="isPopupVisible"
+  class="fixed top-0 left-0 w-full h-screen z-20 flex justify-center items-center overlay"
+  *ngIf="paymentMethodService.isPopupVisible"
 >
   <div
     [@dialog]
@@ -9,7 +9,7 @@
     <div class="flex w-full justify-between items-center">
       <h1 class="text-xl font-medium">Payment Method</h1>
       <svg
-        (click)="this.closePopup.emit(true)"
+        (click)="paymentMethodService.handlePopup()"
         class="w-6 h-6 cursor-pointer"
         fill="none"
         stroke="currentColor"
@@ -28,8 +28,10 @@
     <div class="flex flex-col gap-3 w-full">
       <button
         class="payment-method-button"
-        [ngClass]="{ 'bg-[#f5f5f5]': paymentMethod === 'paypal' }"
-        (click)="changePaymentMethod('paypal')"
+        [ngClass]="{
+          'bg-[#f5f5f5]': paymentMethodService.paymentMethod === 'paypal'
+        }"
+        (click)="paymentMethodService.changePaymentMethod('paypal')"
       >
         <img
           src="../../../../assets/images/brands/paypal-ar21.svg"
@@ -39,8 +41,10 @@
       </button>
       <button
         class="payment-method-button"
-        [ngClass]="{ 'bg-[#f5f5f5]': paymentMethod === 'visa' }"
-        (click)="changePaymentMethod('visa')"
+        [ngClass]="{
+          'bg-[#f5f5f5]': paymentMethodService.paymentMethod === 'visa'
+        }"
+        (click)="paymentMethodService.changePaymentMethod('visa')"
       >
         <img
           src="../../../../assets/images/brands/Visa_Inc._logo.svg"
@@ -50,8 +54,10 @@
       </button>
       <button
         class="payment-method-button"
-        [ngClass]="{ 'bg-[#f5f5f5]': paymentMethod === 'mastercard' }"
-        (click)="changePaymentMethod('mastercard')"
+        [ngClass]="{
+          'bg-[#f5f5f5]': paymentMethodService.paymentMethod === 'mastercard'
+        }"
+        (click)="paymentMethodService.changePaymentMethod('mastercard')"
       >
         <img
           src="../../../../assets/images/brands/Mastercard-logo.svg"
@@ -61,8 +67,10 @@
       </button>
       <button
         class="payment-method-button"
-        [ngClass]="{ 'bg-[#f5f5f5]': paymentMethod === 'googlepay' }"
-        (click)="changePaymentMethod('googlepay')"
+        [ngClass]="{
+          'bg-[#f5f5f5]': paymentMethodService.paymentMethod === 'googlepay'
+        }"
+        (click)="paymentMethodService.changePaymentMethod('googlepay')"
       >
         <img
           src="../../../../assets/images/brands/Google_Pay_Logo.svg"
@@ -72,8 +80,10 @@
       </button>
       <button
         class="payment-method-button"
-        [ngClass]="{ 'bg-[#f5f5f5]': paymentMethod === 'applepay' }"
-        (click)="changePaymentMethod('applepay')"
+        [ngClass]="{
+          'bg-[#f5f5f5]': paymentMethodService.paymentMethod === 'applepay'
+        }"
+        (click)="paymentMethodService.changePaymentMethod('applepay')"
       >
         <img
           src="../../../../assets/images/brands/Apple_Pay_logo.svg"

@@ -1,14 +1,8 @@
 <button
   class="w-full bg-[#f8f8f8] hover:bg-white p-3 rounded-full font-medium transition-all duration-200 border-2 border-[#e8e8e8] flex items-center justify-center"
-  (click)="togglePopup()"
+  (click)="paymentMethodService.handlePopup()"
 >
   <img [src]="logoSrc" alt="payment-method" class="h-9 w-16" />
 </button>
 
-<app-payment-method-popup
-  [isPopupVisible]="showPopup"
-  [paymentMethod]="paymentMethod"
-  (closePopup)="togglePopup()"
-  (methodChanged)="getPaymentMethod()"
->
-</app-payment-method-popup>
+<app-payment-method-popup> </app-payment-method-popup>

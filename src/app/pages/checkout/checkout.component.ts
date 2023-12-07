@@ -6,6 +6,7 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { CartService } from '../../services/cart.service';
+import { PaymentMethodService } from 'src/app/services/payment-method.service';
 import { CartItem } from '../../models/cart-item';
 import { deliveryData } from '../../models/delivery-data.model';
 
@@ -34,7 +35,11 @@ export class CheckoutComponent implements OnInit {
   deliveryForm: FormGroup;
   errors: string[] = [];
 
-  constructor(private fb: FormBuilder, private cartService: CartService) {
+  constructor(
+    private fb: FormBuilder,
+    private cartService: CartService,
+    public paymentMethodService: PaymentMethodService
+  ) {
     this.deliveryForm = this.fb.group({
       name: new FormControl('', [Validators.required]),
       surname: new FormControl('', [Validators.required]),

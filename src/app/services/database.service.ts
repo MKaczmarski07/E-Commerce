@@ -75,7 +75,6 @@ export class DatabaseService {
       }
     } catch (error) {
       console.error('Error setting product data:', error);
-      // Handle the error or rethrow it depending on your use case
       throw error;
     }
   }

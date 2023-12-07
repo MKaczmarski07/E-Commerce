@@ -5,10 +5,8 @@ import {
   EventEmitter,
   HostListener,
 } from '@angular/core';
-import {
-  DialogAnimation,
-  BackgroundAnimation,
-} from '../../../shared/animations';
+import { DialogAnimation, BackgroundAnimation } from '../../shared/animations';
+import { PaymentMethodService } from 'src/app/services/payment-method.service';
 
 @Component({
   selector: 'app-payment-method-popup',
@@ -17,23 +15,14 @@ import {
   animations: [DialogAnimation, BackgroundAnimation],
 })
 export class PaymentMethodPopupComponent {
-  constructor() {}
-  @Input() isPopupVisible = false;
-  @Input() paymentMethod: string = 'paypal';
-  @Output() closePopup = new EventEmitter<boolean>();
   @Output() methodChanged = new EventEmitter();
 
-  changePaymentMethod(method: string) {
-    this.paymentMethod = method;
-    localStorage.setItem('paymentMethod', this.paymentMethod);
-    this.methodChanged.emit(true);
-    this.closePopup.emit(true);
-  }
+  constructor(public paymentMethodService: PaymentMethodService) {}
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(
     event: KeyboardEvent
   ) {
-    this.closePopup.emit(true);
+    this.paymentMethodService.handlePopup();
   }
 
   // Prevent scrolling when the dialog is open
@@ -52,7 +41,7 @@ export class PaymentMethodPopupComponent {
   onClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
     if (!target.closest('.dialog') && target.closest('.overlay')) {
-      this.closePopup.emit(true);
+      this.paymentMethodService.handlePopup();
     }
   }
 }

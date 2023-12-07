@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PaymentMethodService } from 'src/app/services/payment-method.service';
 
 @Component({
   selector: 'app-payment-method-button',
@@ -6,9 +7,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./payment-method-button.component.scss'],
 })
 export class PaymentMethodButtonComponent implements OnInit {
-  paymentMethod: string = 'paypal';
-  showPopup = false;
-
   brands = [
     { name: 'visa', src: '../../../assets/images/brands/Visa_Inc._logo.svg' },
     {
@@ -26,28 +24,20 @@ export class PaymentMethodButtonComponent implements OnInit {
     },
   ];
   logoSrc = '../../../assets/images/brands/paypal-ar21.svg';
-  constructor() {}
+
+  constructor(public paymentMethodService: PaymentMethodService) {}
 
   ngOnInit() {
-    this.getPaymentMethod();
-  }
-
-  togglePopup() {
-    this.showPopup = !this.showPopup;
-  }
-
-  getPaymentMethod() {
-    if (localStorage.getItem('paymentMethod') === null) {
-      localStorage.setItem('paymentMethod', this.paymentMethod);
-    } else {
-      this.paymentMethod = localStorage.getItem('paymentMethod')!;
+    this.changeLogoSrc();
+    this.paymentMethodService.paymentMethod$.subscribe(() => {
       this.changeLogoSrc();
-    }
+    });
   }
 
   changeLogoSrc() {
+    this.paymentMethodService.getPaymentMethod();
     this.logoSrc = this.brands.find(
-      (brand) => brand.name === this.paymentMethod
+      (brand) => brand.name === this.paymentMethodService.paymentMethod
     )!.src;
   }
 }
