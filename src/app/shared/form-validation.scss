@@ -1,0 +1,16 @@
+.error-message {
+  color: #ff5050;
+  font-size: 0.85rem;
+  font-weight: 500;
+  position: absolute;
+  bottom: -1.5rem;
+}
+
+.error-border {
+  border: 1px solid #ff5050 !important;
+}
+
+.button-invalid {
+  opacity: 50%;
+  cursor: not-allowed;
+}

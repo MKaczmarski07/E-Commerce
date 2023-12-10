@@ -13,7 +13,7 @@ import { deliveryData } from '../../models/delivery-data.model';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.scss'],
+  styleUrls: ['./checkout.component.scss', '../../shared/form-validation.scss'],
 })
 export class CheckoutComponent implements OnInit {
   secondStepPassed = false;
@@ -59,7 +59,6 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.cartItems = this.cartService.getCartItems();
     this.deliveryData = this.getDeliveryData();
-    // To musi być przeliczane w serwisie jako observable ( problem pyrz routingu )
     this.totalPrice = this.cartService.getTotalPrice();
     this.shipping = this.totalPrice > 100 ? 0 : 10;
   }

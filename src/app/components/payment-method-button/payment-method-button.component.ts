@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PaymentMethodService } from 'src/app/services/payment-method.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-payment-method-button',
   templateUrl: './payment-method-button.component.html',
   styleUrls: ['./payment-method-button.component.scss'],
 })
-export class PaymentMethodButtonComponent implements OnInit {
+export class PaymentMethodButtonComponent implements OnInit, OnDestroy {
   brands = [
     { name: 'visa', src: '../../../assets/images/brands/Visa_Inc._logo.svg' },
     {
@@ -24,14 +25,17 @@ export class PaymentMethodButtonComponent implements OnInit {
     },
   ];
   logoSrc = '../../../assets/images/brands/paypal-ar21.svg';
+  paymentMethodSub?: Subscription;
 
   constructor(public paymentMethodService: PaymentMethodService) {}
 
   ngOnInit() {
     this.changeLogoSrc();
-    this.paymentMethodService.paymentMethod$.subscribe(() => {
-      this.changeLogoSrc();
-    });
+    this.paymentMethodSub = this.paymentMethodService.paymentMethod$.subscribe(
+      () => {
+        this.changeLogoSrc();
+      }
+    );
   }
 
   changeLogoSrc() {
@@ -39,5 +43,9 @@ export class PaymentMethodButtonComponent implements OnInit {
     this.logoSrc = this.brands.find(
       (brand) => brand.name === this.paymentMethodService.paymentMethod
     )!.src;
+  }
+
+  ngOnDestroy() {
+    this.paymentMethodSub?.unsubscribe();
   }
 }

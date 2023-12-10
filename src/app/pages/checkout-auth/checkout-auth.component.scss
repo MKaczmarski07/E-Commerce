@@ -1,0 +1,33 @@
+.advantages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  li::before {
+    content: "✓";
+    color: #007aff;
+    margin-right: 0.5rem;
+  }
+}
+
+.guest-button {
+  width: 100%;
+  max-width: 15rem;
+  padding: 0.8rem 1rem;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  background-color: #007aff;
+  color: white;
+  font-weight: 500;
+}
+
+.register-button {
+  width: 100%;
+  max-width: 15rem;
+  padding: 0.8rem 1rem;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  border: 1px solid #007aff;
+  color: #007aff;
+  font-weight: 500;
+}

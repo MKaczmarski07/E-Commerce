@@ -1,0 +1,35 @@
+.form-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1.1rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  background-color: #f2f2f2;
+
+  &:focus {
+    outline: 1px solid #d7d7d7;
+  }
+}
+
+.password-input {
+  box-sizing: border-box;
+  padding-right: 3rem;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  background-color: #007aff;
+  color: white;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-element {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

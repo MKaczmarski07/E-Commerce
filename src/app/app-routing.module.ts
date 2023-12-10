@@ -12,6 +12,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { CheckoutAuthComponent } from './pages/checkout-auth/checkout-auth.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -38,6 +39,10 @@ const routes: Routes = [
   {
     path: 'checkout',
     component: CheckoutComponent,
+  },
+  {
+    path: 'checkout-auth',
+    component: CheckoutAuthComponent,
   },
   {
     path: 'favorites',

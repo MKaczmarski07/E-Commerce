@@ -33,6 +33,8 @@ import { PaymentMethodButtonComponent } from './components/payment-method-button
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { CheckoutProgressBarComponent } from './components/checkout-progress-bar/checkout-progress-bar.component';
 import { SummaryItemComponent } from './components/summary-item/summary-item.component';
+import { CheckoutAuthComponent } from './pages/checkout-auth/checkout-auth.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,8 @@ import { SummaryItemComponent } from './components/summary-item/summary-item.com
     CheckoutComponent,
     CheckoutProgressBarComponent,
     SummaryItemComponent,
+    CheckoutAuthComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

@@ -22,6 +22,7 @@ export class AuthService {
   private isAdmin = new BehaviorSubject<boolean>(false);
   isAdmin$ = this.isAdmin.asObservable();
   private tokenExpirationTimer: any;
+  public isSignInMode = true;
 
   constructor(private http: HttpClient, private router: Router) {}
 

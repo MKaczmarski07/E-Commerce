@@ -1,0 +1,214 @@
+<div>
+  <span *ngIf="isLoading">Logging in in progress...</span>
+  <form
+    *ngIf="!isLoading"
+    [formGroup]="form"
+    class="flex flex-col gap-9 w-full max-w-[25rem]"
+    (submit)="onSubmit()"
+  >
+    <div class="flex flex-col gap-6">
+      <div class="form-element">
+        <label for="email">Email</label>
+        <input
+          class="form-input"
+          formControlName="email"
+          type="text"
+          name="email"
+          placeholder="example@email.com"
+          [ngClass]="{
+            'error-border':
+              form.get('email')?.touched && !form.get('email')?.valid
+          }"
+        />
+        <span
+          *ngIf="form.get('email')?.touched && !form.get('email')?.dirty"
+          class="error-message"
+          >This field cannot be empty.</span
+        >
+        <span
+          *ngIf="
+            form.get('email')?.touched &&
+            !form.get('email')?.valid &&
+            form.get('email')?.dirty
+          "
+          class="error-message"
+          >Please enter a valid email.</span
+        >
+      </div>
+      <div class="form-element">
+        <label for="password">Password</label>
+        <div class="relative">
+          <input
+            id="password"
+            class="form-input password-input"
+            formControlName="password"
+            type="password"
+            name="password"
+            placeholder="Enter password"
+            [ngClass]="{
+              'error-border':
+                (form.get('password')?.touched &&
+                  !form.get('password')?.dirty) ||
+                (!isSignInMode &&
+                  form.get('password')?.touched &&
+                  form.get('password')?.invalid &&
+                  form.get('password')?.dirty)
+            }"
+          />
+          <button
+            type="button"
+            (click)="showPassword('password')"
+            class="text-[#424242] absolute right-4 top-[50%] translate-y-[-50%]"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
+              ></path>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <span
+          *ngIf="form.get('password')?.touched && !form.get('password')?.dirty"
+          class="error-message"
+          >This field cannot be empty.</span
+        >
+        <span
+          *ngIf="
+            !isSignInMode &&
+            form.get('password')?.touched &&
+            form.get('password')?.invalid &&
+            form.get('password')?.dirty
+          "
+          class="error-message"
+        >
+          Password must be at least 6 characters long.
+        </span>
+      </div>
+      <div *ngIf="!isSignInMode" class="form-element">
+        <label for="password-repeated">Repeat password</label>
+        <div>
+          <div class="relative">
+            <input
+              id="password-repeated"
+              class="form-input password-input"
+              formControlName="repeatedPassword"
+              type="password"
+              name="password-repeated"
+              placeholder="Enter password again"
+              [ngClass]="{
+                'error-border':
+                  form.get('repeatedPassword')?.touched &&
+                  !form.get('repeatedPassword')?.valid &&
+                  form.get('repeatedPassword')?.dirty
+              }"
+            />
+            <button
+              type="button"
+              (click)="showPassword('password-repeated')"
+              class="text-[#424242] absolute right-4 top-[50%] translate-y-[-50%]"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <span
+            *ngIf="
+              form.get('repeatedPassword')?.touched &&
+              !form.get('repeatedPassword')?.dirty
+            "
+            class="error-message"
+            >This field cannot be empty.</span
+          >
+          <span
+            *ngIf="
+              form.get('repeatedPassword')?.touched &&
+              form.get('repeatedPassword')?.invalid &&
+              form.get('repeatedPassword')?.dirty
+            "
+            class="error-message"
+          >
+            Passwords are not the same.
+          </span>
+        </div>
+      </div>
+    </div>
+    <button
+      *ngIf="!isSignInMode"
+      type="submit"
+      [disabled]="!form.valid"
+      class="submit-btn"
+      [ngClass]="{
+        'button-invalid': !form.valid
+      }"
+    >
+      Sign Up
+    </button>
+    <button
+      *ngIf="isSignInMode"
+      type="submit"
+      [disabled]="!form.valid"
+      class="submit-btn"
+      [ngClass]="{
+        'button-invalid': !form.valid
+      }"
+    >
+      Sign In
+    </button>
+    <div *ngIf="isAuthPage">
+      <div *ngIf="isSignInMode" class="flex justify-center gap-3">
+        <span> Don't have an account?</span>
+        <button
+          class="text-[#007aff]"
+          (click)="isSignInMode = false; resetForm(); changeValidator()"
+        >
+          <span>Sign up now</span>
+        </button>
+      </div>
+      <div *ngIf="!isSignInMode" class="flex justify-center gap-3">
+        <span> Arleady have an account?</span>
+        <button
+          class="text-[#007aff]"
+          (click)="isSignInMode = true; resetForm(); changeValidator()"
+        >
+          <span>Sign in</span>
+        </button>
+      </div>
+    </div>
+  </form>
+  <span *ngIf="error" class="text-[#ff5050] w-full flex justify-center mt-3">{{
+    error
+  }}</span>
+</div>

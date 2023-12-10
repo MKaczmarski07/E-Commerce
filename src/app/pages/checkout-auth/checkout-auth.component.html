@@ -1,0 +1,22 @@
+<div class="w-full mx-auto max-w-[70rem] gap-9 flex lg:flex-row flex-col p-6">
+  <div class="w-full flex lg:items-start flex-col gap-6 p-6">
+    <span class="text-3xl font-medium">I'm a new customer</span>
+    <button (click)="onGuest()" class="guest-button">
+      Continue as a guest
+    </button>
+    <span>Or</span>
+    <button (click)="onRegister()" class="register-button">Register</button>
+    <span class="font-medium">Why is it worth creating an account?</span>
+    <ul class="advantages-list">
+      <li>Track your order status</li>
+      <li>View your order history</li>
+      <li>Take advantage of discounts and promotions</li>
+    </ul>
+  </div>
+  <div
+    class="w-full max-w-[27rem] flex flex-col gap-6 border-2 border-[rgb(229,229,229)] rounded-[5px] p-6"
+  >
+    <span class="text-3xl font-medium">I'm arleady a customer</span>
+    <app-login></app-login>
+  </div>
+</div>

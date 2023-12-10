@@ -3,6 +3,7 @@ import { CartService } from '../../services/cart.service';
 import { Subscription } from 'rxjs';
 import { CartItem } from 'src/app/models/cart-item';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -15,8 +16,14 @@ export class CartComponent implements OnInit, OnDestroy {
   subTotal: number = 0;
   shipping: number = 0;
   total: number = 0;
+  isAuthenticated = false;
+  private userSub?: Subscription;
 
-  constructor(private cartService: CartService, private router: Router) {}
+  constructor(
+    private cartService: CartService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getCartItems();
@@ -25,6 +32,9 @@ export class CartComponent implements OnInit, OnDestroy {
       this.cartItems = this.cartService.getCartItems();
       this.calculateValues();
     });
+    this.userSub = this.authService.user.subscribe(
+      (user) => (this.isAuthenticated = !!user)
+    );
   }
 
   calculateValues() {
@@ -44,10 +54,15 @@ export class CartComponent implements OnInit, OnDestroy {
       return;
     }
     this.cartService.saveTotalPrice(this.total);
-    this.router.navigate(['/checkout']);
+    if (this.isAuthenticated) {
+      this.router.navigate(['/checkout']);
+    } else {
+      this.router.navigate(['/checkout-auth']);
+    }
   }
 
   ngOnDestroy() {
     this.cartItemsSub?.unsubscribe();
+    this.userSub?.unsubscribe();
   }
 }
