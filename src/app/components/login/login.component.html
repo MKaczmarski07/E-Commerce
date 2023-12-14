@@ -112,9 +112,11 @@
               placeholder="Enter password again"
               [ngClass]="{
                 'error-border':
-                  form.get('repeatedPassword')?.touched &&
-                  !form.get('repeatedPassword')?.valid &&
-                  form.get('repeatedPassword')?.dirty
+                  (form.get('repeatedPassword')?.touched &&
+                    !form.get('repeatedPassword')?.dirty) ||
+                  (form.get('repeatedPassword')?.touched &&
+                    form.get('repeatedPassword')?.invalid &&
+                    form.get('repeatedPassword')?.dirty)
               }"
             />
             <button
