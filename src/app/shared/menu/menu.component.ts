@@ -13,6 +13,12 @@ import { Router, NavigationEnd } from '@angular/router';
   animations: [ToggleMenu, ToggleVisivility],
 })
 export class MenuComponent implements OnInit, OnDestroy {
+  private userSub?: Subscription;
+  private cartItemsSub?: Subscription;
+  private favoritesSub?: Subscription;
+  private isAdminSub?: Subscription;
+  private routerSubscription: Subscription;
+
   subMenuType: string | null;
   previousSubMenu: string | null;
   menuState: string = 'start';
@@ -20,13 +26,9 @@ export class MenuComponent implements OnInit, OnDestroy {
   windowWidth = window.innerWidth;
   isAuthenticated = false;
   isAdmin = false;
-  private userSub?: Subscription;
-  private cartItemsSub?: Subscription;
-  private favoritesSub?: Subscription;
-  private isAdminSub?: Subscription;
-  private routerSubscription: Subscription;
   catrtItemsCount = 0;
   favoritesCount = 0;
+  timer: any;
 
   constructor(
     private authService: AuthService,
@@ -54,6 +56,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.cartItemsSub = this.cartService.cartItemsCount$.subscribe(
       (count) => (this.catrtItemsCount = count)
     );
+
     this.favoritesCount = this.favoritesService.initFavoritesCound();
     this.favoritesSub = this.favoritesService.favorites$.subscribe(
       (count) => (this.favoritesCount = count)

@@ -8,8 +8,26 @@ import { CartItem } from '../models/cart-item';
 export class CartService {
   private cartItemsCount = new Subject<number>();
   cartItemsCount$ = this.cartItemsCount.asObservable();
+  public isCartEmpty = true;
+  private lastAddedItem = new Subject<CartItem>();
+  lastAddedItem$ = this.lastAddedItem.asObservable();
+  private timer: any;
+  private isAddInfoVisible = new Subject<boolean>();
+  isAddInfoVisible$ = this.isAddInfoVisible.asObservable();
 
   constructor() {}
+
+  private toggleAddInfo() {
+    this.isAddInfoVisible.next(true);
+    this.timer = setTimeout(() => {
+      this.isAddInfoVisible.next(false);
+    }, 3000);
+  }
+
+  closeAddInfo() {
+    this.isAddInfoVisible.next(false);
+    clearTimeout(this.timer);
+  }
 
   private updateCartItemsCount() {
     const cartItems = this.getCartItems();
@@ -19,6 +37,7 @@ export class CartService {
     );
     const sum = cartItemsCount === 1 ? cartItems.length : cartItemsCount;
     this.cartItemsCount.next(sum);
+    this.isCartEmpty = cartItems.length === 0;
   }
 
   initCartItemsCount() {
@@ -28,6 +47,7 @@ export class CartService {
       (acc, item) => (item.quantity = acc + item.quantity),
       0
     );
+    this.isCartEmpty = cartItems.length === 0;
     return cartItemsCount;
   }
 
@@ -60,6 +80,8 @@ export class CartService {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
     this.updateCartItemsCount();
     this.calculateTotalPrice();
+    this.lastAddedItem.next(cartItem);
+    this.toggleAddInfo();
   }
 
   removeFromCart(id: string, size: string) {

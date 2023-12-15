@@ -3,6 +3,7 @@ import { RouterModule, Routes, CanActivate, Router } from '@angular/router';
 import { RedirectGuard } from './guards/redirect.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
+import { CheckoutGuard } from './guards/checkout.guard';
 
 import { HomeComponent } from './pages/home/home.component';
 import { ProductsComponent } from './pages/products/products.component';
@@ -39,10 +40,12 @@ const routes: Routes = [
   {
     path: 'checkout',
     component: CheckoutComponent,
+    canActivate: [CheckoutGuard],
   },
   {
     path: 'checkout-auth',
     component: CheckoutAuthComponent,
+    canActivate: [CheckoutGuard],
   },
   {
     path: 'favorites',
@@ -58,6 +61,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [RedirectGuard, AuthGuard, AdminGuard],
+  providers: [RedirectGuard, AuthGuard, AdminGuard, CheckoutGuard],
 })
 export class AppRoutingModule {}

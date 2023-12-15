@@ -35,6 +35,7 @@ import { CheckoutProgressBarComponent } from './components/checkout-progress-bar
 import { SummaryItemComponent } from './components/summary-item/summary-item.component';
 import { CheckoutAuthComponent } from './pages/checkout-auth/checkout-auth.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProductAddedComponent } from './components/product-added/product-added.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { LoginComponent } from './components/login/login.component';
     SummaryItemComponent,
     CheckoutAuthComponent,
     LoginComponent,
+    ProductAddedComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,45 @@
+<div *ngIf="isAddInfoVisible" class="relative">
+  <div class="p-3 flex flex-col gap-3 bg-white absolute top-0 right-0 z-[3]">
+    <div class="flex justify-between">
+      <div class="flex gap-2">
+        <span class="font-medium">Added to {{ addedTo }}</span>
+      </div>
+      <button (click)="onAddInfoClose()">X</button>
+    </div>
+    <div class="w-full flex gap-6">
+      <div class="h-[6rem] w-[6rem]">
+        <img
+          [src]="addedItem?.imageUrl || '../../../assets/images/lazy-image.svg'"
+          alt="product-photo"
+          class="rounded-[5px] object-cover"
+        />
+      </div>
+      <div class="w-full flex flex-col gap-2">
+        <span class="font-medium cart-text">{{ addedItem?.name }}</span>
+        <span class="text-[#505050] cart-text">{{ addedItem?.shortDes }}</span>
+        <span class="text-[#505050] cart-text"
+          >Size: {{ addedItem?.size }}</span
+        >
+        <span *ngIf="!addedItem?.discountPrice" class="font-medium">
+          {{ addedItem?.price | number : "1.2-2" }} €
+        </span>
+        <div *ngIf="addedItem?.discountPrice" class="flex gap-2">
+          <span class="font-medium"
+            >{{ addedItem?.discountPrice | number : "1.2-2" }} €</span
+          >
+          <span class="font-medium text-[#505050] line-through"
+            >{{ addedItem?.price | number : "1.2-2" }} €</span
+          >
+        </div>
+      </div>
+    </div>
+    <div class="flex gap-3 w-full">
+      <button routerLink="/cart" class="w-1/2">View cart</button>
+      <button (click)="onCheckoutSelected()" class="w-1/2">Checkout</button>
+    </div>
+  </div>
+  <div
+    (click)="onAddInfoClose()"
+    class="fixed top-[3.75rem] left-0 z-[2] w-screen h-screen bg-black opacity-20"
+  ></div>
+</div>
