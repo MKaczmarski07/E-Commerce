@@ -62,6 +62,8 @@ export class CartService {
 
   addToCart(cartItem: CartItem) {
     let cartItems = this.getCartItems();
+    this.lastAddedItem.next(cartItem);
+    this.toggleAddInfo();
     if (
       cartItems.find(
         (item) => item.id === cartItem.id && item.size === cartItem.size
@@ -80,8 +82,6 @@ export class CartService {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
     this.updateCartItemsCount();
     this.calculateTotalPrice();
-    this.lastAddedItem.next(cartItem);
-    this.toggleAddInfo();
   }
 
   removeFromCart(id: string, size: string) {

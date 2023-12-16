@@ -11,7 +11,6 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./product-added.component.scss'],
 })
 export class ProductAddedComponent implements OnInit, OnDestroy {
-  @Input() addedTo = 'cart';
   private isAddInfoVisibleSub?: Subscription;
   private addedItemSub?: Subscription;
   private userSub?: Subscription;

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Item } from '../models/item';
+import { DatabaseService } from './database.service';
 
 @Injectable({
   providedIn: 'root',
@@ -7,8 +9,25 @@ import { Subject } from 'rxjs';
 export class FavoritesService {
   private favorites = new Subject<number>();
   favorites$ = this.favorites.asObservable();
+  private lastAddedItem = new Subject<Item>();
+  lastAddedItem$ = this.lastAddedItem.asObservable();
+  private timer: any;
+  private isAddInfoVisible = new Subject<boolean>();
+  isAddInfoVisible$ = this.isAddInfoVisible.asObservable();
 
-  constructor() {}
+  constructor(private databaseService: DatabaseService) {}
+
+  private toggleAddInfo() {
+    this.isAddInfoVisible.next(true);
+    this.timer = setTimeout(() => {
+      this.isAddInfoVisible.next(false);
+    }, 3000);
+  }
+
+  closeAddInfo() {
+    this.isAddInfoVisible.next(false);
+    clearTimeout(this.timer);
+  }
 
   private updateFavoritesCound() {
     const cartItems = this.getFavorites();
@@ -40,5 +59,13 @@ export class FavoritesService {
     favorites.push(id);
     localStorage.setItem('favorites', JSON.stringify(favorites));
     this.updateFavoritesCound();
+    this.getAddedItem(id);
+  }
+
+  getAddedItem(id: string) {
+    this.databaseService.getItem(id).then((item) => {
+      this.lastAddedItem.next(item);
+      this.toggleAddInfo();
+    });
   }
 }
