@@ -1,3 +1,18 @@
-<div>
-  <app-product-view></app-product-view>
+<div class="relative">
+  <button
+    *ngIf="isDeleteButtonVisible"
+    (click)="onItemRemove()"
+    class="absolute top-3 right-3 z-[2]"
+  >
+    X
+  </button>
+  <app-product-view
+    [ngClass]="{ 'opacity-50 z-[1]': isDeleteButtonVisible }"
+    [name]="item.name"
+    [price]="item.price"
+    [for]="item.for"
+    [imageUrl]="item.imageUrl"
+    [shortDes]="item.shortDes"
+    (click)="onProductClick(item)"
+  ></app-product-view>
 </div>

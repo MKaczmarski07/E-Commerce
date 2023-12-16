@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FavoritesService } from 'src/app/services/favorites.service';
 import { DatabaseService } from 'src/app/services/database.service';
-import { LoadProductService } from 'src/app/services/load-product.service';
 import { Item } from '../../models/item';
 import { Subscription } from 'rxjs';
 
@@ -14,11 +13,13 @@ export class FavoritesComponent implements OnInit, OnDestroy {
   items: Item[] = [];
   showInfo = false;
   private favItemsSub?: Subscription;
+  isRemovingPossible = false;
+  isLoaded = false;
+  skeletonItems: number[] = [];
 
   constructor(
     private favoritesService: FavoritesService,
-    private databaseService: DatabaseService,
-    private loadProductService: LoadProductService
+    private databaseService: DatabaseService
   ) {}
 
   ngOnInit(): void {
@@ -26,21 +27,26 @@ export class FavoritesComponent implements OnInit, OnDestroy {
     this.favItemsSub = this.favoritesService.favorites$.subscribe(() => {
       this.getItems();
     });
+    this.initSkeletonItems();
   }
 
   getItems() {
     const favorites = this.favoritesService.getFavorites();
-    console.log(favorites);
     this.databaseService.getItemsbyIDs(favorites).then((items) => {
       this.items = items;
+      this.isLoaded = true;
       if (items.length === 0) {
         this.showInfo = true;
       }
     });
   }
 
-  onProductClick(item: Item) {
-    this.loadProductService.loadProduct(item);
+  toggleRemoving() {
+    this.isRemovingPossible = !this.isRemovingPossible;
+  }
+
+  initSkeletonItems() {
+    this.skeletonItems = Array(8).fill(0);
   }
 
   ngOnDestroy() {

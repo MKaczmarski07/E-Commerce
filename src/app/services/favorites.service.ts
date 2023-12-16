@@ -68,4 +68,11 @@ export class FavoritesService {
       this.toggleAddInfo();
     });
   }
+
+  deleteItem(id: string) {
+    let favorites = this.getFavorites();
+    favorites = favorites.filter((item) => item !== id);
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+    this.updateFavoritesCound();
+  }
 }
