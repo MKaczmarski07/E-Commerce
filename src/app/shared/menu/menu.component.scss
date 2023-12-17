@@ -1,3 +1,15 @@
+.nav-border-conditional {
+  @media (min-width: 1024px) {
+    border-bottom: 2px solid #ececec;
+  }
+}
+
+.nav-border-mobile {
+  @media (max-width: 1024px) {
+    border-bottom: 2px solid #ececec;
+  }
+}
+
 .nav-button {
   display: flex;
   justify-content: center;
@@ -59,4 +71,11 @@
     width: 1.75rem;
     height: 1.75rem;
   }
+}
+
+.info-component {
+  position: absolute;
+  top: 3.75rem;
+  right: 0;
+  z-index: 3;
 }

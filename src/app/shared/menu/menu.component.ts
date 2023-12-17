@@ -19,8 +19,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   private isAdminSub?: Subscription;
   private routerSubscription: Subscription;
 
-  subMenuType: string | null;
-  previousSubMenu: string | null;
+  subMenuType: string | null = null;
   menuState: string = 'start';
   subMenuState: string;
   windowWidth = window.innerWidth;
@@ -38,8 +37,6 @@ export class MenuComponent implements OnInit, OnDestroy {
   ) {
     this.menuState = this.windowWidth >= 1024 ? 'start' : 'hidden';
     this.subMenuState = this.menuState;
-    this.subMenuType = this.windowWidth >= 1024 ? 'Women' : null;
-    this.previousSubMenu = this.subMenuType;
     this.routerSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd && this.windowWidth < 1024) {
         this.subMenuState = 'hidden';
@@ -76,7 +73,18 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.windowWidth = event.target.innerWidth;
     this.menuState = this.windowWidth >= 1024 ? 'start' : 'hidden';
     this.subMenuState = this.menuState;
-    this.subMenuType = this.windowWidth >= 1024 ? this.previousSubMenu : null;
+  }
+
+  @HostListener('document:mousemove', ['$event'])
+  onMouseMove(event: MouseEvent) {
+    if (this.windowWidth > 1024) {
+      if (
+        event.clientY > 118 ||
+        (event.clientY < 61 && (event.clientX < 20 || event.clientX > 304))
+      ) {
+        this.subMenuType = null;
+      }
+    }
   }
 
   toggleMenu() {
@@ -94,9 +102,15 @@ export class MenuComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleSubMenuType(menu: string) {
+  toggleSubMenuTypeOnHover(menu: string) {
+    if (this.windowWidth > 1024) {
+      this.subMenuType = menu;
+      this.toggleMobileSubMenu();
+    }
+  }
+
+  toggleSubMenuTypeOnClick(menu: string) {
     this.subMenuType = menu;
-    this.previousSubMenu = menu;
     this.toggleMobileSubMenu();
   }
 
