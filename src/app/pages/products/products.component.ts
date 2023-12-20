@@ -20,6 +20,7 @@ export class ProductsComponent implements OnInit {
   productType = '';
   itemsID = '';
   skeletonItems: number[] = [];
+  sortType = 'default';
 
   constructor(
     private databaseService: DatabaseService,
@@ -36,6 +37,7 @@ export class ProductsComponent implements OnInit {
   }
 
   loadData() {
+    this.isLoaded = false;
     this.for = this.route.snapshot.params['for'];
     this.category = this.route.snapshot.params['category'];
     this.items = this.databaseService.getCollection().pipe(
@@ -74,5 +76,102 @@ export class ProductsComponent implements OnInit {
 
   initSkeletonItems() {
     this.skeletonItems = Array(8).fill(0);
+  }
+
+  sortByPrice(direction: string) {
+    if (!this.items) return;
+    this.isLoaded = false;
+    let sortedItems;
+
+    if (direction === 'ascending') {
+      sortedItems = this.items.pipe(
+        map((arr) =>
+          arr.sort(
+            (a, b) => this.getEffectivePrice(a) - this.getEffectivePrice(b)
+          )
+        ),
+        tap(() => (this.isLoaded = true))
+      );
+    }
+
+    if (direction === 'descending') {
+      sortedItems = this.items.pipe(
+        map((arr) =>
+          arr.sort(
+            (a, b) => this.getEffectivePrice(b) - this.getEffectivePrice(a)
+          )
+        ),
+        tap(() => (this.isLoaded = true))
+      );
+    }
+
+    if (!sortedItems) return;
+    this.items = sortedItems;
+  }
+
+  getEffectivePrice(item: Item): number {
+    return item.discountPrice !== undefined ? item.discountPrice : item.price;
+  }
+
+  sortByName(direction: string) {
+    if (!this.items) return;
+    this.isLoaded = false;
+    let sortedItems;
+
+    if (direction === 'ascending') {
+      sortedItems = this.items.pipe(
+        map((arr) =>
+          arr.sort((a, b) => {
+            if (a.name < b.name) return -1;
+            if (a.name > b.name) return 1;
+            return 0;
+          })
+        ),
+        tap(() => (this.isLoaded = true))
+      );
+    }
+
+    if (direction === 'descending') {
+      sortedItems = this.items.pipe(
+        map((arr) =>
+          arr.sort((a, b) => {
+            if (a.name > b.name) return -1;
+            if (a.name < b.name) return 1;
+            return 0;
+          })
+        ),
+        tap(() => (this.isLoaded = true))
+      );
+    }
+
+    if (!sortedItems) return;
+    this.items = sortedItems;
+  }
+
+  onSortChange() {
+    if (this.sortType === 'default') {
+      this.loadData();
+      return;
+    }
+
+    if (this.sortType === 'lowToHigh') {
+      this.sortByPrice('ascending');
+      return;
+    }
+
+    if (this.sortType === 'highToLow') {
+      this.sortByPrice('descending');
+      return;
+    }
+
+    if (this.sortType === 'aToZ') {
+      this.sortByName('ascending');
+      return;
+    }
+
+    if (this.sortType === 'zToA') {
+      this.sortByName('descending');
+      return;
+    }
   }
 }

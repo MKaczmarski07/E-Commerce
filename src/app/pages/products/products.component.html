@@ -1,5 +1,41 @@
 <div class="flex py-6 md:px-12 px-3 flex-col gap-6">
-  <h1 class="text-2xl font-medium">{{ productType }}</h1>
+  <div class="flex sm:justify-between sm:flex-row flex-col gap-3">
+    <h1 class="text-2xl font-medium">{{ productType }}</h1>
+
+    <div class="flex flex-col gap-2">
+      <label for="sort" class="font-medium">Sort by:</label>
+      <div class="relative">
+        <select
+          [(ngModel)]="sortType"
+          (change)="onSortChange()"
+          id="sort"
+          class="appearance-none bg-[#f8f8f8] border border-[#e8e8e8] text-sm rounded-lg outline-none focus:border-[#afafaf] block w-full p-2.5 pr-8 cursor-pointer"
+        >
+          <option value="default">Default</option>
+          <option value="lowToHigh">Price: low to high</option>
+          <option value="highToLow">Price: high to low</option>
+          <option value="aToZ">Alphabetically: A-Z</option>
+          <option value="zToA">Alphabetically: Z-A</option>
+        </select>
+        <svg
+          class="pointer-events-none absolute right-2 top-3 w-5 h-5 text-[#000000b3]"
+          data-slot="icon"
+          fill="none"
+          stroke-width="1.5"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m19.5 8.25-7.5 7.5-7.5-7.5"
+          ></path>
+        </svg>
+      </div>
+    </div>
+  </div>
 
   <div
     *ngIf="showInfo"
