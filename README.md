@@ -4,18 +4,19 @@
 
 ## About
 
-Full-stack online store application, inspired by the Nike store. Through this project, I wanted to better understand Frontend-Backend communication using REST API and connect asynchronous data with UI. The application allows the user to experience the full purchasing process - from browsing products to placing an order. The interface has been carefully adapted to all types of devices, which is especially important in the case of E-Commerce applications.
+Real-time E-commerce web application, inspired by the Nike store. Through this project, I wanted to better understand Frontend-Backend communication using REST API and connect asynchronous data with UI. The application allows the user to experience the full purchasing process - from browsing products to placing an order. The interface has been carefully adapted to all types of devices, which is especially important in the case of E-Commerce applications.
 
 <!--  ## Official Website 🌐 -->
 
 ## Key Features
 
 - Token-based user authentication
-- Fetching and displaying product data stored in the cloud NoSQL database
-- Adding new products to the store using the administration panel
-- Adding items to cart
-- Adding items to favorites
-- Simulation of the product ordering process, including a summary, selection of payment method and delivery address
+- Fetching and displaying product data stored in the cloud NoSQL database.
+- Displaying selected product categories
+- Adding new products to the store using the administration panel.
+- Adding items to cart.
+- Adding items to favorites.
+- Simulation of the product ordering process, including a summary, selection of payment method and delivery address.
 
 ## Technology Stack
 
@@ -26,6 +27,7 @@ Full-stack online store application, inspired by the Nike store. Through this pr
 [Angular Fire 🔗](https://github.com/angular/angularfire)<br>
 [Sass 🔗](https://sass-lang.com)<br>
 [TailwindCSS 🔗](https://tailwindcss.com)<br>
+[Keen-Slider 🔗](https://keen-slider.io)<br>
 
 ## Installation Guide ⚙️
 

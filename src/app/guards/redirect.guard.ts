@@ -24,7 +24,6 @@ export class RedirectGuard implements CanActivate {
         segments[2] === 'kids') &&
       (segments[3] === 'shoes' ||
         segments[3] === 'tops' ||
-        segments[3] === 'bras' ||
         segments[3] === 'leggings' ||
         segments[3] === 'jackets' ||
         segments[3] === 'bottoms' ||

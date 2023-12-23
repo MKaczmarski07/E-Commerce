@@ -34,7 +34,9 @@
       </div>
     </div>
     <div class="flex gap-3 w-full">
-      <button routerLink="/cart" class="w-1/2">View cart</button>
+      <button (click)="onAddInfoClose()" routerLink="/cart" class="w-1/2">
+        View cart
+      </button>
       <button (click)="onCheckoutSelected()" class="w-1/2">Checkout</button>
     </div>
   </div>

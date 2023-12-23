@@ -4,7 +4,7 @@ import { LoadProductService } from 'src/app/services/load-product.service';
 import { Observable } from 'rxjs';
 import { Item } from '../../models/item';
 import { Router } from '@angular/router';
-import { map, takeWhile, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -27,13 +27,13 @@ export class HomeComponent implements OnInit {
     this.initSkeletonItems();
     this.shoes = this.databaseService.getCollection();
     this.bestSellers = this.databaseService.getCollection().pipe(
-      map((items) => items.filter((item) => item.isBestSeller === true))
-      // takeWhile((items) => items.length > 1 && items.length < 6)
+      map((items) => items.filter((item) => item.isBestSeller === true)),
+      // limit maximum items number
+      map((items) => items.slice(0, 7))
     );
     this.itemsOnSale = this.databaseService.getCollection().pipe(
       map((items) => items.filter((item) => item.discountPrice !== undefined)),
-      takeWhile((items) => items.length > 1 && items.length < 6)
-      // propably take(6) also works but there have to be more items
+      map((items) => items.slice(0, 7))
     );
   }
 

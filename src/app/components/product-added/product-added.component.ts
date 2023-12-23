@@ -39,6 +39,7 @@ export class ProductAddedComponent implements OnInit, OnDestroy {
   }
 
   onCheckoutSelected() {
+    this.onAddInfoClose();
     if (this.isAuthenticated) {
       this.router.navigate(['/checkout']);
     } else {

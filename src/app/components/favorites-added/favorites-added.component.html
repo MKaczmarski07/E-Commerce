@@ -31,7 +31,9 @@
       </div>
     </div>
 
-    <button routerLink="/favorites" class="w-1/2">View favorites</button>
+    <button (click)="onAddInfoClose()" routerLink="/favorites" class="w-1/2">
+      View favorites
+    </button>
   </div>
   <div
     (click)="onAddInfoClose()"

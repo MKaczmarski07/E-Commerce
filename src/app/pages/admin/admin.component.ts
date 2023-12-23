@@ -51,7 +51,7 @@ export class AdminComponent {
       this.categories = ['shoes', 'bottoms', 'tops', 'jackets'];
       return;
     } else if (forValue === 'women') {
-      this.categories = ['shoes', 'bras', 'tops', 'leggings', 'jackets'];
+      this.categories = ['shoes', 'tops', 'leggings', 'jackets'];
       return;
     } else if (forValue === 'kids') {
       this.categories = ['sets', 'shoes', 'bottoms', 'tops', 'jackets'];

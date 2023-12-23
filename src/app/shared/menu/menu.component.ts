@@ -38,9 +38,14 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.menuState = this.windowWidth >= 1024 ? 'start' : 'hidden';
     this.subMenuState = this.menuState;
     this.routerSubscription = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd && this.windowWidth < 1024) {
-        this.subMenuState = 'hidden';
-        this.menuState = 'hidden';
+      if (event instanceof NavigationEnd) {
+        if (this.windowWidth < 1024) {
+          this.subMenuState = 'hidden';
+          this.menuState = 'hidden';
+        } else {
+          this.menuState = 'start';
+          this.subMenuType = null;
+        }
       }
     });
   }
