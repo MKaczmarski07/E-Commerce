@@ -4,7 +4,7 @@
     #sliderRef
   >
     <div *ngFor="let slideSrc of slides" class="keen-slider__slide">
-      <img [src]="slideSrc" />
+      <img class="w-full h-full object-cover" [src]="slideSrc" />
     </div>
   </div>
   <button class="arrow arrow--left" (click)="slider!.prev()">

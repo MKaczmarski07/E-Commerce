@@ -13,6 +13,7 @@ Real-time E-commerce web application, inspired by the Nike store. Through this p
 - Token-based user authentication
 - Fetching and displaying product data stored in the cloud NoSQL database.
 - Displaying selected product categories
+- Sorting products
 - Adding new products to the store using the administration panel.
 - Adding items to cart.
 - Adding items to favorites.

@@ -1,5 +1,7 @@
 <div *ngIf="isAddInfoVisible" class="relative">
-  <div class="p-3 flex flex-col gap-3 bg-white absolute top-0 right-0 z-[3]">
+  <div
+    class="p-3 rounded-bl-[5px] flex flex-col gap-3 bg-white absolute top-0 right-0 z-[3]"
+  >
     <div class="flex justify-between">
       <div class="flex gap-2">
         <span class="font-medium">Added to cart</span>
@@ -34,10 +36,19 @@
       </div>
     </div>
     <div class="flex gap-3 w-full">
-      <button (click)="onAddInfoClose()" routerLink="/cart" class="w-1/2">
+      <button
+        (click)="onAddInfoClose()"
+        routerLink="/cart"
+        class="w-1/2 py-1 px-2 rounded-[5px] border-2 border-black"
+      >
         View cart
       </button>
-      <button (click)="onCheckoutSelected()" class="w-1/2">Checkout</button>
+      <button
+        (click)="onCheckoutSelected()"
+        class="w-1/2 py-1 px-2 rounded-[5px] border-2 border-black"
+      >
+        Checkout
+      </button>
     </div>
   </div>
   <div

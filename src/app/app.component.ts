@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
+import { InitialPopupService } from './services/initial-popup.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,15 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private authService: AuthService) {}
+  isPopupVisible = false;
+
+  constructor(
+    private authService: AuthService,
+    private initialPopupService: InitialPopupService
+  ) {}
 
   ngOnInit(): void {
     this.authService.autoLogin();
+    this.isPopupVisible = this.initialPopupService.initValue();
   }
 }

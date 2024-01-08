@@ -1,5 +1,7 @@
 <div *ngIf="isAddInfoVisible" class="relative">
-  <div class="p-3 flex flex-col gap-3 bg-white absolute top-0 right-0 z-[3]">
+  <div
+    class="p-3 rounded-bl-[5px] flex flex-col gap-3 bg-white absolute top-0 right-0 z-[3]"
+  >
     <div class="flex justify-between">
       <div class="flex gap-2">
         <span class="font-medium">Added to favorites</span>
@@ -31,7 +33,11 @@
       </div>
     </div>
 
-    <button (click)="onAddInfoClose()" routerLink="/favorites" class="w-1/2">
+    <button
+      (click)="onAddInfoClose()"
+      routerLink="/favorites"
+      class="w-full px-2 rounded-[5px] border-2 border-black"
+    >
       View favorites
     </button>
   </div>

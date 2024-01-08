@@ -20,16 +20,16 @@ export class SliderComponent implements AfterViewInit, OnDestroy {
 
   currentSlide: number = 0;
   sliderHeaders: string[] = [
-    'Promocja na karpia w Lidlu',
-    'Oszczędź nawet 55%',
-    'Październikowe rabaty',
-    'Zobacz nasze nowości',
+    'Winter sale',
+    'Charity campaign',
+    'Save up to 55%',
+    'See our new products',
   ];
   slides: string[] = [
-    '../../../assets/images/lazy-image.svg',
-    '../../../assets/images/lazy-image.svg',
-    '../../../assets/images/lazy-image.svg',
-    '../../../assets/images/lazy-image.svg',
+    '../../../assets/images/slider/winterSale.jpg',
+    '../../../assets/images/slider/charity.png',
+    '../../../assets/images/slider/55.png',
+    '../../../assets/images/slider/new.png',
   ];
   dotHelper: number[] = [];
   slider: KeenSliderInstance | undefined;

@@ -5,6 +5,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
 
 import { User } from '../models/user.model';
+import { environment } from '../../environments/environments';
 
 export interface AuthResponseData {
   kind: string;
@@ -29,7 +30,8 @@ export class AuthService {
   signup(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyDqqyRWt41W501DqTX_FZEIckLDDTxCY04',
+        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=' +
+          environment.firebase.apiKey,
         {
           email: email,
           password: password,
@@ -52,7 +54,8 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyDqqyRWt41W501DqTX_FZEIckLDDTxCY04',
+        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=' +
+          environment.firebase.apiKey,
         {
           email: email,
           password: password,
@@ -134,7 +137,7 @@ export class AuthService {
   }
 
   private isUserAdmin() {
-    if (this.user.value.id === 'GUtKwXEDS9cteTlQTON4BNS8sqp2') {
+    if (this.user.value.id === '9q9RGYodcjTyrX1tvPE1O6RihQd2') {
       this.isAdmin.next(true);
     }
     // additional security rules are applied directly in the database

@@ -1,0 +1,46 @@
+<div
+  class="fixed top-0 left-0 w-full h-screen z-20 flex justify-center items-center overlay"
+  *ngIf="isPopupVisible"
+>
+  <div
+    [@dialog]
+    class="absolute bg-white p-6 rounded-[10px] dialog z-30 flex flex-col gap-6 items-center justify-center sm:w-[20rem] w-[calc(100%-3rem)] dialog"
+  >
+    <div class="flex w-full justify-start gap-3">
+      <svg
+        class="w-8 h-8 text-black"
+        data-slot="icon"
+        fill="none"
+        stroke-width="1.5"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+        ></path>
+      </svg>
+      <h1 class="text-2xl font-medium">Important info</h1>
+    </div>
+    <p>
+      This website represents the live version of a programming project for a
+      portfolio. The products displayed here are not intended as a sales offer.
+    </p>
+    <div class="flex justify-end w-full">
+      <button
+        (click)="closePopup()"
+        class="py-2 px-3 bg-black text-white rounded-[5px] font-medium"
+      >
+        <span> Confirm </span>
+      </button>
+    </div>
+  </div>
+
+  <div
+    [@background]
+    class="absolute top-0 left-0 w-full h-full bg-slate-900 bg-opacity-20 z-10"
+  ></div>
+</div>

@@ -37,6 +37,7 @@ import { CheckoutAuthComponent } from './pages/checkout-auth/checkout-auth.compo
 import { LoginComponent } from './components/login/login.component';
 import { ProductAddedComponent } from './components/product-added/product-added.component';
 import { FavoritesAddedComponent } from './components/favorites-added/favorites-added.component';
+import { PopupComponent } from './components/popup/popup.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { FavoritesAddedComponent } from './components/favorites-added/favorites-
     LoginComponent,
     ProductAddedComponent,
     FavoritesAddedComponent,
+    PopupComponent,
   ],
   imports: [
     BrowserModule,
