@@ -1,5 +1,7 @@
 <div>
-  <span *ngIf="isLoading">Logging in in progress...</span>
+  <div class="w-full flex justify-center font-medium">
+    <span *ngIf="isLoading">Logging ...</span>
+  </div>
   <form
     *ngIf="!isLoading"
     [formGroup]="form"
@@ -210,7 +212,9 @@
       </div>
     </div>
   </form>
-  <span *ngIf="error" class="text-[#ff5050] w-full flex justify-center mt-3">{{
-    error
-  }}</span>
+  <span
+    *ngIf="error"
+    class="text-[#ff5050] w-full flex justify-center mt-3 font-medium"
+    >{{ error }}</span
+  >
 </div>

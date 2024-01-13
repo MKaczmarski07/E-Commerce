@@ -1,12 +1,12 @@
 # E-Commerce platform
 
-⚠️ Still in development
-
 ## About
 
-Real-time E-commerce web application, inspired by the Nike store. Through this project, I wanted to better understand Frontend-Backend communication using REST API and connect asynchronous data with UI. The application allows the user to experience the full purchasing process - from browsing products to placing an order. The interface has been carefully adapted to all types of devices, which is especially important in the case of E-Commerce applications.
+Real-time E-commerce web application, inspired by the Nike store. Through this project, I wanted to better understand Frontend-Backend communication using REST API and connect asynchronous data with UI. The application allows the user to experience the full purchasing process - from browsing products to placing an order.
 
-<!--  ## Official Website 🌐 -->
+## live version 🌐
+
+[shop.kaczmarski.dev](https://shop.kaczmarski.dev)
 
 ## Key Features
 
@@ -29,6 +29,13 @@ Real-time E-commerce web application, inspired by the Nike store. Through this p
 [Sass 🔗](https://sass-lang.com)<br>
 [TailwindCSS 🔗](https://tailwindcss.com)<br>
 [Keen-Slider 🔗](https://keen-slider.io)<br>
+
+## Login Details
+
+An example user created for the live version:
+
+Email: user@test.com
+Password: User_0
 
 ## Installation Guide ⚙️
 

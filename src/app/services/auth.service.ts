@@ -137,10 +137,10 @@ export class AuthService {
   }
 
   private isUserAdmin() {
-    if (this.user.value.id === '9q9RGYodcjTyrX1tvPE1O6RihQd2') {
+    if (this.user.value.id === environment.adminId) {
       this.isAdmin.next(true);
     }
-    // additional security rules are applied directly in the database
+    // It is not possible to make real role-based authentication with just plain firebase auth module and client-side code. It is necessary to use  firebase admin sdk on the server side to make it work properly.
   }
 
   private handleError(errorRes: HttpErrorResponse) {
@@ -152,11 +152,8 @@ export class AuthService {
       case 'EMAIL_EXISTS':
         errorMessage = 'This email exists already';
         break;
-      case 'EMAIL_NOT_FOUND':
-        errorMessage = 'This email does not exist.';
-        break;
-      case 'INVALID_PASSWORD':
-        errorMessage = 'This password is not correct.';
+      case 'INVALID_LOGIN_CREDENTIALS':
+        errorMessage = 'Invalid login or password.';
         break;
     }
     return throwError(errorMessage);
