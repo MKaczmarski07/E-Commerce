@@ -4,7 +4,7 @@
 
 Real-time E-commerce web application, inspired by the Nike store. Through this project, I wanted to better understand Frontend-Backend communication using REST API and connect asynchronous data with UI. The application allows the user to experience the full purchasing process - from browsing products to placing an order.
 
-## live version 🌐
+## Live Version 🌐
 
 [shop.kaczmarski.dev](https://shop.kaczmarski.dev)
 
@@ -34,7 +34,7 @@ Real-time E-commerce web application, inspired by the Nike store. Through this p
 
 An example user created for the live version:
 
-Email: user@test.com
+Email: user@test.com <br>
 Password: User_0
 
 ## Installation Guide ⚙️
