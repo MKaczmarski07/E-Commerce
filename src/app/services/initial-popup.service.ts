@@ -6,16 +6,10 @@ import { Injectable } from '@angular/core';
 export class InitialPopupService {
   savedPopupState = true;
 
-  // if its the first time the user visits the site, show the popup
-  // if the user has already visited the site, don't show the popup
-
   initValue() {
     const state = this.getState();
     if (state === null) {
-      this.saveState(false);
-      return true;
-    } else {
-      return this.getState();
+      this.saveState(true);
     }
   }
 

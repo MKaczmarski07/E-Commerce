@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.autoLogin();
-    this.isPopupVisible = this.initialPopupService.initValue();
+    this.initialPopupService.initValue();
+    this.isPopupVisible = this.initialPopupService.getState();
   }
 }

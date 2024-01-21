@@ -1,5 +1,6 @@
 import { Component, HostListener, Input } from '@angular/core';
 import { DialogAnimation, BackgroundAnimation } from '../../shared/animations';
+import { InitialPopupService } from '../../services/initial-popup.service';
 
 @Component({
   selector: 'app-popup',
@@ -10,8 +11,11 @@ import { DialogAnimation, BackgroundAnimation } from '../../shared/animations';
 export class PopupComponent {
   @Input() isPopupVisible = false;
 
+  constructor(private initialPopupService: InitialPopupService) {}
+
   closePopup() {
     this.isPopupVisible = false;
+    this.initialPopupService.saveState(false);
   }
 
   // Prevent scrolling when the dialog is open
