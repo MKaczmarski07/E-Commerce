@@ -19,6 +19,13 @@ Real-time E-commerce web application, inspired by the Nike store. Through this p
 - Adding items to favorites.
 - Simulation of the product ordering process, including a summary, selection of payment method and delivery address.
 
+## User Interface
+![home](https://github.com/user-attachments/assets/c12cf253-c4de-4096-a5bc-c70221ba308c)
+![product](https://github.com/user-attachments/assets/d7d30d07-80c1-464f-8e58-917ad099b4c0)
+![cart](https://github.com/user-attachments/assets/853dca67-9117-4bcb-b9e4-f0a6a8475cb9)
+![data](https://github.com/user-attachments/assets/70aa1f90-b4a4-4ffa-9e49-91de25ee0304)
+
+
 ## Technology Stack
 
 [Angular 🔗](https://angular.io)<br>
