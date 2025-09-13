@@ -4,6 +4,9 @@
 
 Real-time E-commerce web application, inspired by the Nike store. Through this project, I wanted to better understand Frontend-Backend communication using REST API and connect asynchronous data with UI. The application allows the user to experience the full purchasing process - from browsing products to placing an order.
 
+## Technology Stack
+[![My Skills](https://skillicons.dev/icons?i=angular,typescript,rxjs,sass,tailwind,firebase)](https://skillicons.dev)
+
 ## Key Features
 
 - Token-based user authentication
@@ -20,18 +23,6 @@ Real-time E-commerce web application, inspired by the Nike store. Through this p
 ![product](https://github.com/user-attachments/assets/d7d30d07-80c1-464f-8e58-917ad099b4c0)
 ![cart](https://github.com/user-attachments/assets/853dca67-9117-4bcb-b9e4-f0a6a8475cb9)
 ![data](https://github.com/user-attachments/assets/70aa1f90-b4a4-4ffa-9e49-91de25ee0304)
-
-
-## Technology Stack
-
-[Angular 🔗](https://angular.io)<br>
-[TypeScript 🔗](https://typescriptlang.org)<br>
-[RxJS 🔗](https://rxjs.dev)<br>
-[Firebase Cloud Services 🔗](https://firebase.google.com)<br>
-[Angular Fire 🔗](https://github.com/angular/angularfire)<br>
-[Sass 🔗](https://sass-lang.com)<br>
-[TailwindCSS 🔗](https://tailwindcss.com)<br>
-[Keen-Slider 🔗](https://keen-slider.io)<br>
 
 ## Login Details
 
