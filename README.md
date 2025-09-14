@@ -4,7 +4,7 @@ The application allows users to experience the full purchasing process - from br
 
 ### Learning Objectives
 - Through this project, I wanted to better understand Frontend-Backend communication using REST API and connect asynchronous data with UI <br/>
-- The majority of code focuses on Front-End side of the application, while backend features aer handled by Firebase <br/>
+- The majority of code focuses on Frontend side of the application, while backend features aer handled by Firebase <br/>
 - Apart from the Angular, the project heavily utilizes RxJS library and Observer Pattern <br/>
 - User interface is optimized for all types of devices <br/>
 
