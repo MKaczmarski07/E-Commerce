@@ -19,7 +19,7 @@ The application allows users to experience the full purchasing process - from br
 🔷 Adding new products to the store using the administration panel. </br>
 🔷 Adding items to cart. </br>
 🔷 Adding items to favorites. </br>
-🔷 Simulation of the product ordering process, including a summary, selection of payment method and delivery address. </br>
+🔷 Simulation of the product ordering process. </br>
 
 ## User Interface
 #### Landing page
