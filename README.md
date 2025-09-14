@@ -3,10 +3,10 @@ The following project is a real-time E-commerce web application, implemented wit
 The application allows users to experience the full purchasing process - from browsing products to placing an order.
 
 ### Learning Objectives
-- Through this project, I wanted to better understand Frontend-Backend communication using REST API and connect asynchronous data with UI <br/>
-- The majority of code focuses on Frontend side of the application, while backend features aer handled by Firebase <br/>
-- Apart from the Angular, the project heavily utilizes RxJS library and Observer Pattern <br/>
-- User interface is optimized for all types of devices <br/>
+- Through this project, I wanted to better understand Frontend-Backend communication using REST API and connect asynchronous data with UI. <br/>
+- The majority of code focuses on Frontend side of the application, while backend features are handled by Firebase. <br/>
+- Apart from the Angular, the project heavily utilizes RxJS library and Observer Pattern. <br/>
+- User interface is optimized for all types of devices. <br/>
 
 ### Used Technologies
 [![My Skills](https://skillicons.dev/icons?i=angular,typescript,rxjs,sass,tailwind,firebase)](https://skillicons.dev)
@@ -14,8 +14,8 @@ The application allows users to experience the full purchasing process - from br
 ### Application Features
 🔷 Token-based user authentication, based on Firebase. </br>
 🔷 Fetching and displaying product data stored in the cloud NoSQL database. </br>
-🔷 Displaying selected product categories </br>
-🔷 Sorting products </br>
+🔷 Displaying selected product categories. </br>
+🔷 Sorting products. </br>
 🔷 Adding new products to the store using the administration panel. </br>
 🔷 Adding items to cart. </br>
 🔷 Adding items to favorites. </br>
